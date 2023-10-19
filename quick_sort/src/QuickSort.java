@@ -1,92 +1,44 @@
 import java.util.Arrays;
 
 public class QuickSort {
-
       public static void main(String[] args) {
-            //int[] array = new int[]{64, 42, 73, 41, 32, 53, 16, 24, 57, 42, 74, 55, 36};
-            int[] array = { 10, 7, 8, 9, 1};
+            int[] arr = {5,4,3};
 
-            System.out.println("array before : " + Arrays.toString(array));
-
-            quickSort(array, 0, array.length - 1);
-
-            System.out.println("array after : " + Arrays.toString(array));
+            quickSort(arr, 0, arr.length - 1);
+            System.out.println(Arrays.toString(arr));
       }
 
-      public static void quickSort(int[] arr, int beginIndex, int endIndex) {
-            int beginNumber = arr[beginIndex];
-            int endNumber = arr[endIndex];
+      private static void quickSort(int[] arr, int leftIndex, int rightIndex) {
+            //exit from recursion
+            if(leftIndex >= rightIndex) return;
 
-            System.out.println("quickSort started : " + Arrays.toString(arr) +
-                  ", beginIndex = " + beginIndex +
-                  " (beginNumber " + beginNumber +
-                  "), endIndex = " + endIndex +
-                  " (endNumber " + endNumber +
-                  ")");
-            if (beginIndex < endIndex) {
-                  int divideIndex = partition(arr, beginIndex, endIndex);
-                  int divideNumber = arr[divideIndex];
-                  System.out.println("beginIndex < endIndex, divideIndex = " + divideIndex +
-                  ", (divideNumber " + divideNumber + ")");
-                  quickSort(arr, beginIndex, divideIndex - 1);
+            int pivotIndex = partition(arr, leftIndex, rightIndex);
 
-                  quickSort(arr, divideIndex, endIndex);
-            }
+            //run quickSort for left part of arr
+            quickSort(arr, leftIndex, pivotIndex - 1);
+
+            //run quickSort for right part of arr
+            quickSort(arr, pivotIndex+1, rightIndex);
       }
 
-      private static int partition(int[] arr, int beginIndex, int endIndex) {
-            int rightIndex = endIndex;
-            int leftIndex = beginIndex;
+      private static int partition(int[] arr, int leftIndex, int rightIndex) {
+           int pivot = arr[rightIndex];
+           int pointerIndex = leftIndex - 1;
 
-            int pivot = arr[beginIndex + (endIndex - beginIndex) / 2];
-
-            int leftNumber = arr[leftIndex];
-            int rightNumber = arr[rightIndex];
-
-            System.out.println("partition started : " + Arrays.toString(arr) +
-                  ", leftIndex = " + leftIndex +
-                  " (leftNumber " + leftNumber +
-                  "), rightIndex = " + rightIndex +
-                  " (rightNumber " + rightNumber +
-                  ")" +
-                  ", pivotNumber = " + pivot);
-
-            while (leftIndex <= rightIndex) {
-
-                  while (arr[leftIndex] < pivot) {
-                        leftIndex++;
-                        System.out.println("leftIndex++, (leftIndex = " + leftIndex + ", leftNumber = " + arr[leftIndex] + ")");
-                  }
-
-                  while (arr[rightIndex] > pivot) {
-                        rightIndex--;
-                        System.out.println("rightIndex--, (rightIndex = " + rightIndex + ", rightNumber = " + arr[rightIndex] + ")");
-                  }
-
-                  if (leftIndex <= rightIndex) {
-                        System.out.println("leftIndex <= rightIndex");
-                        if (leftIndex != rightIndex) {
-                              swap(arr, rightIndex, leftIndex);
-                        }
-                        leftIndex++;
-                        rightIndex--;
-                        System.out.println("leftIndex++, (leftIndex = " + leftIndex + ")");
-                        System.out.println("rightIndex--, (rightIndex = " + rightIndex + ")");
+            for (int i = leftIndex; i < rightIndex; i++) {
+                  if(arr[i] < pivot) {
+                       pointerIndex++;
+                       swap(arr, pointerIndex, i);
                   }
             }
-            return leftIndex;
+            //swap last element in arr
+            swap(arr, pointerIndex + 1, rightIndex);
+            return pointerIndex + 1;
       }
 
-      private static void swap(int[] arr, int index1, int index2) {
-            int index1Number = arr[index1];
-            int index2Number = arr[index2];
-            System.out.println("swap started : " + Arrays.toString(arr) +
-                  ", index1 = " + index1 +
-                  " (index1Number " + index1Number +
-                  "), index2 = " + index2 +
-                  " (index2Number " + index2Number + ")");
-            int tmp = arr[index1];
-            arr[index1] = arr[index2];
-            arr[index2] = tmp;
+      private static void swap(int[] arr, int pointerIndex, int i) {
+            int temp = arr[i];
+            arr[i] = arr[pointerIndex];
+            arr[pointerIndex] = temp;
       }
 }
