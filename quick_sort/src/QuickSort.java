@@ -65,7 +65,9 @@ public class QuickSort {
 
                   if (leftIndex <= rightIndex) {
                         System.out.println("leftIndex <= rightIndex");
-                        swap(arr, rightIndex, leftIndex);
+                        if (leftIndex != rightIndex) {
+                              swap(arr, rightIndex, leftIndex);
+                        }
                         leftIndex++;
                         rightIndex--;
                         System.out.println("leftIndex++, (leftIndex = " + leftIndex + ")");
@@ -76,7 +78,6 @@ public class QuickSort {
       }
 
       private static void swap(int[] arr, int index1, int index2) {
-
             int index1Number = arr[index1];
             int index2Number = arr[index2];
             System.out.println("swap started : " + Arrays.toString(arr) +
