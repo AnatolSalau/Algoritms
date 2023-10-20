@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/Algoritms.iml" filepath="$PROJECT_DIR$/Algoritms.iml" />
       <module fileurl="file://$PROJECT_DIR$/quick_sort/quick_sort.iml" filepath="$PROJECT_DIR$/quick_sort/quick_sort.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" filepath="$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" filepath="$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" />
     </modules>
   </component>
 </project>
