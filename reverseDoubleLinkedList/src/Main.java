@@ -8,7 +8,7 @@ class Node
 class Main
 {
 	// Utility function to push a node at the beginning of the doubly linked list
-	public static Node push(Node head, int key)
+	public static Node addToStart(Node head, int key)
 	{
 		Node node = new Node();
 		node.data = key;
@@ -26,7 +26,7 @@ class Main
 	}
 
 	// Helper function to print nodes of a doubly linked list
-	public static void printDDL(String msg, Node head)
+	public static void print(String msg, Node head)
 	{
 		System.out.print(msg);
 		while (head != null)
@@ -35,7 +35,7 @@ class Main
 			head = head.next;
 		}
 
-		System.out.println("null");
+		System.out.println("head is " + head);
 	}
 
 	// Function to swap `next` and `prev` pointers of the given node
@@ -47,7 +47,7 @@ class Main
 	}
 
 	// Function to reverse a doubly-linked list
-	public static Node reverseDDL(Node head)
+	public static Node reverseList(Node head)
 	{
 		Node prev = null;
 		Node curr = head;
@@ -80,11 +80,11 @@ class Main
 
 		Node head = null;
 		for (int key: keys) {
-			head = push(head, key);
+			head = addToStart(head, key);
 		}
 
-		printDDL("Original list: ", head);
-		head = reverseDDL(head);
-		printDDL("Reversed list: ", head);
+		print("Original list: ", head);
+		head = reverseList(head);
+		print("Reversed list: ", head);
 	}
 }
