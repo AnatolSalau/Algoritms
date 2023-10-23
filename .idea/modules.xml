@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/1_bubble_sort/1_bubble_sort.iml" filepath="$PROJECT_DIR$/1_bubble_sort/1_bubble_sort.iml" />
       <module fileurl="file://$PROJECT_DIR$/Algoritms.iml" filepath="$PROJECT_DIR$/Algoritms.iml" />
+      <module fileurl="file://$PROJECT_DIR$/binarySearch/binarySearch.iml" filepath="$PROJECT_DIR$/binarySearch/binarySearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonTree/commonTree.iml" filepath="$PROJECT_DIR$/commonTree/commonTree.iml" />
       <module fileurl="file://$PROJECT_DIR$/quick_sort/quick_sort.iml" filepath="$PROJECT_DIR$/quick_sort/quick_sort.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" filepath="$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" />
