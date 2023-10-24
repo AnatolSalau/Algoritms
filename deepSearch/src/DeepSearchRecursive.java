@@ -1,4 +1,4 @@
-public class Main {
+public class DeepSearchRecursive {
       /**
        * Calculate sum of all tree's nodes
        */
