@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/blockingQueu/blockingQueu.iml" filepath="$PROJECT_DIR$/blockingQueu/blockingQueu.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonTree/commonTree.iml" filepath="$PROJECT_DIR$/commonTree/commonTree.iml" />
       <module fileurl="file://$PROJECT_DIR$/deepSearch/deepSearch.iml" filepath="$PROJECT_DIR$/deepSearch/deepSearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/graphSearch/graphSearch.iml" filepath="$PROJECT_DIR$/graphSearch/graphSearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/quick_sort/quick_sort.iml" filepath="$PROJECT_DIR$/quick_sort/quick_sort.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" filepath="$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" filepath="$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" />
