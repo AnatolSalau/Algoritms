@@ -1,6 +1,6 @@
 public class Graph {
-      private boolean adjMatrix[][];
-      private int numVertices;
+      private final boolean[][] adjMatrix;
+      private final int numVertices;
 
       public Graph(int numVertices) {
             this.numVertices = numVertices;
@@ -11,6 +11,7 @@ public class Graph {
             adjMatrix[i][j] = true;
             adjMatrix[j][i] = true;
       }
+
 
       public void removeEdge(int i, int j) {
             adjMatrix[i][j] = false;
