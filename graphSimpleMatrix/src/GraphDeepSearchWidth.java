@@ -32,24 +32,18 @@ public class GraphDeepSearchWidth {
 
             while (!queue.isEmpty()) {
                   Integer currentVertex = queue.remove();
+                  visited.add(currentVertex);
                   if(currentVertex == numberVertexFound) {
                         break;
                   }
-                  if(visited.contains(currentVertex)) {
-                        break; // выкидывает так как 0 есть в visited
-                  }
-                  visited.add(currentVertex);
+
                   boolean[] currentVertexMatrix = graphMatrix[currentVertex];
                   for (int i = 0; i<currentVertexMatrix.length; i++) {
                         if(currentVertexMatrix[i]) {
-                              int currentEdge = i;
                               System.out.print("Vertex number : " + i + " = " + currentVertexMatrix[i]);
-                              visited.add(currentEdge);
-                              if(currentEdge == numberVertexFound) {
-                                    System.out.println("found +" + currentEdge);
-                                    break;
+                              if (!visited.contains(i)) {
+                                    queue.add(i);
                               }
-                              queue.add(i);
                         }
                   }
             }
@@ -101,6 +95,6 @@ public class GraphDeepSearchWidth {
             g.addEdge(8,7);
 
             //System.out.println(g.toString());
-            g.searchInWidth(0,4);
+            g.searchInWidth(8,1);
       }
 }
