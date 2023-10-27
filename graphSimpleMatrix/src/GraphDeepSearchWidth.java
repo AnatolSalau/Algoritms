@@ -26,29 +26,28 @@ public class GraphDeepSearchWidth {
 
       public void searchInWidth(int numberVertexStart, int numberVertexFound) {
             QueueImpl<Integer> queue = new QueueImpl<>();
-            ArrayList<Integer> visited = new ArrayList<>();
-            //add root
-            queue.add(numberVertexStart);
+            ArrayList<Integer> visited = new ArrayList<>(); //visited vertexes
+
+            queue.add(numberVertexStart); //add root in queue
 
             while (!queue.isEmpty()) {
                   Integer currentVertex = queue.remove();
                   visited.add(currentVertex);
-                  if(currentVertex == numberVertexFound) {
+
+                  if(currentVertex == numberVertexFound) { //search element
                         break;
                   }
 
-                  boolean[] currentVertexMatrix = graphMatrix[currentVertex];
+                  boolean[] currentVertexMatrix = graphMatrix[currentVertex]; //all link with other vertexes
                   for (int i = 0; i<currentVertexMatrix.length; i++) {
-                        if(currentVertexMatrix[i]) {
-                              System.out.print("Vertex number : " + i + " = " + currentVertexMatrix[i]);
-                              if (!visited.contains(i)) {
+                        if(currentVertexMatrix[i]) { //if links is true
+                              if (!visited.contains(i)) { //if link isn't in visited -> add to queue
                                     queue.add(i);
                               }
                         }
                   }
             }
-            System.out.println();
-            System.out.println("Path : " + visited);
+            System.out.println("Path : " + visited); // print path
       }
       @Override
       public String toString() {
@@ -95,6 +94,6 @@ public class GraphDeepSearchWidth {
             g.addEdge(8,7);
 
             //System.out.println(g.toString());
-            g.searchInWidth(8,1);
+            g.searchInWidth(1,15);
       }
 }
