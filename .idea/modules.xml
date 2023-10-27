@@ -7,12 +7,14 @@
       <module fileurl="file://$PROJECT_DIR$/binarySearch/binarySearch.iml" filepath="$PROJECT_DIR$/binarySearch/binarySearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/blockingQueu/blockingQueu.iml" filepath="$PROJECT_DIR$/blockingQueu/blockingQueu.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonTree/commonTree.iml" filepath="$PROJECT_DIR$/commonTree/commonTree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/countCharAtString/countCharAtString.iml" filepath="$PROJECT_DIR$/countCharAtString/countCharAtString.iml" />
       <module fileurl="file://$PROJECT_DIR$/deepSearch/deepSearch.iml" filepath="$PROJECT_DIR$/deepSearch/deepSearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/graphSimpleMatrix/graphSimpleMatrix.iml" filepath="$PROJECT_DIR$/graphSimpleMatrix/graphSimpleMatrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/quick_sort/quick_sort.iml" filepath="$PROJECT_DIR$/quick_sort/quick_sort.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" filepath="$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" filepath="$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseString/reverseString.iml" filepath="$PROJECT_DIR$/reverseString/reverseString.iml" />
+      <module fileurl="file://$PROJECT_DIR$/search_in_string/search_in_string.iml" filepath="$PROJECT_DIR$/search_in_string/search_in_string.iml" />
     </modules>
   </component>
 </project>
