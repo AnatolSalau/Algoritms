@@ -1,3 +1,5 @@
+import java.security.InvalidParameterException;
+
 public class Main {
       /**
        Дана строка, состоящая из букв A-Z:
@@ -12,6 +14,56 @@ public class Main {
        повторений
        */
       public static void main(String[] args) {
+            String input = "AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB";
+            countCharAtStringWhile(input);
+            countCharAtStringFor(input);
+      }
 
+      private static void countCharAtStringWhile(String input) throws InvalidParameterException {
+            StringBuilder stringBuilder = new StringBuilder();
+            int i = 0;
+            while (i < input.length()) {
+                  char currentCharacter = input.charAt(i);
+                  int count = 1;
+                  while (i < input.length() - 1) {
+                        if (!Character.isAlphabetic(input.charAt(i))) {
+                              throw new InvalidParameterException("Invalid character");
+                        }
+                        if (input.charAt(i + 1) == currentCharacter) {
+                              count++;
+                              i++;
+                        } else {
+                              break;
+                        }
+                  }
+                  stringBuilder.append(currentCharacter).append(count);
+                  i++;
+            }
+            System.out.println(stringBuilder.toString());
+      }
+
+      private static void countCharAtStringFor(String input) throws InvalidParameterException {
+            StringBuilder stringBuilder = new StringBuilder();
+            int count = 1;
+
+            for (int i = 0; i < input.length(); i++) {
+                  char currentCharacter = input.charAt(i);
+                  if (!Character.isAlphabetic(currentCharacter) || Character.isLowerCase(currentCharacter)) {
+                        throw new InvalidParameterException("Invalid character");
+                  }
+
+                  for (int j = i; j < input.length()-1; j++) {
+                        if (input.charAt(i + 1) == currentCharacter) {
+                              count++;
+                              i++;
+                        } else {
+                              break;
+                        }
+                  }
+
+                  stringBuilder.append(currentCharacter).append(count);
+                  count = 1;
+            }
+            System.out.println(stringBuilder.toString());
       }
 }
