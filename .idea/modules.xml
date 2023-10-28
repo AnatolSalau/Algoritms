@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/blockingQueu/blockingQueu.iml" filepath="$PROJECT_DIR$/blockingQueu/blockingQueu.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonTree/commonTree.iml" filepath="$PROJECT_DIR$/commonTree/commonTree.iml" />
       <module fileurl="file://$PROJECT_DIR$/countCharAtString/countCharAtString.iml" filepath="$PROJECT_DIR$/countCharAtString/countCharAtString.iml" />
+      <module fileurl="file://$PROJECT_DIR$/countInStringByMap/countInStringByMap.iml" filepath="$PROJECT_DIR$/countInStringByMap/countInStringByMap.iml" />
       <module fileurl="file://$PROJECT_DIR$/deepSearch/deepSearch.iml" filepath="$PROJECT_DIR$/deepSearch/deepSearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/graphSimpleMatrix/graphSimpleMatrix.iml" filepath="$PROJECT_DIR$/graphSimpleMatrix/graphSimpleMatrix.iml" />
       <module fileurl="file://$PROJECT_DIR$/isAnagramOrNot/isAnagramOrNot.iml" filepath="$PROJECT_DIR$/isAnagramOrNot/isAnagramOrNot.iml" />
