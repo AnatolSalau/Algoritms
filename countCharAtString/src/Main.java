@@ -15,8 +15,9 @@ public class Main {
        */
       public static void main(String[] args) {
             String input = "AAAABBBCCXYZDDDDEEEFFFAAAAAABBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-            countCharAtStringWhile(input);
-            countCharAtStringFor(input);
+            //countCharAtStringWhile(input);
+            //countCharAtStringFor(input);
+            System.out.println(countChartAtStrMyOwn(input));
       }
 
       private static void countCharAtStringWhile(String input) throws InvalidParameterException {
@@ -65,5 +66,25 @@ public class Main {
                   count = 1;
             }
             System.out.println(stringBuilder.toString());
+      }
+
+      private static String countChartAtStrMyOwn(String input) {
+            StringBuilder stringBuilder = new StringBuilder();
+            int count = 1;
+            for (int i = 0; i < input.length(); i++) {
+                  char current = input.charAt(i);
+                  for (int j = i; j < input.length()-1; j++) {
+                        char next = input.charAt(j + 1);
+                        if (current == next) {
+                              count ++;
+                              i++;
+                        } else {
+                              break;
+                        }
+                  }
+                  stringBuilder.append(current).append(count);
+                  count = 1;
+            }
+            return stringBuilder.toString();
       }
 }

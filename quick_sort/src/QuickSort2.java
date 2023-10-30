@@ -4,7 +4,9 @@ public class QuickSort2 {
       public static void main(String[] args) {
             //int[] array = new int[]{64, 42, 73, 41, 32, 53, 16, 24, 57, 42, 74, 55, 36};
             int[] array = { 4, 5, 7, 1, 8, 9};
+            /*
 
+             */
             System.out.println("array before : " + Arrays.toString(array));
 
             quickSort(array, 0, array.length - 1);
