@@ -53,7 +53,7 @@ public class Main {
                   }
 
                   for (int j = i; j < input.length()-1; j++) {
-                        if (input.charAt(i + 1) == currentCharacter) {
+                        if (input.charAt(j + 1) == currentCharacter) {
                               count++;
                               i++;
                         } else {
