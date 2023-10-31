@@ -1,8 +1,7 @@
 import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Set;
 
-public class Task1 {
+public class TaskA {
       /**
        * Даны две строки строчных латинских символов: строка J и строка S.
        * Символы, входящие в строку J, — «драгоценности», входящие в строку S — «камни».
