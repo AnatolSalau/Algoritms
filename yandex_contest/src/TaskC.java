@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -9,7 +8,7 @@ public class TaskC {
        * Требуется удалить из него все повторения.
        */
       public static void main(String[] args) {
-            int[] numbers = {-9, -8, 0, 0, 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12};
+            int[] numbers = {-9, -8, 0, 0, 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 7, 8, 9, 10, 11};
             //int[] numbers = {0};
             System.out.println("Array before : " + Arrays.toString(numbers));
             int[] byStream = removeDuplicatesByStream(numbers);
@@ -35,20 +34,31 @@ public class TaskC {
 
       /*     i  :  0   1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19  20  21  22
             arr : -9, -8, 0, 0, 1, 1, 1, 2, 3, 3, 3, 4, 4, 4, 5, 5, 6, 7, 8, 9, 10, 11, 12
-              K :  0
-     after swap : -9
+              K :  0   1  2  0  1
+     after swap : -9  -8  0  1
        */
       static int[] removeDuplicatesByLoop(int[] arr) {
+            //index not duplicated elements
             int k = 0;
 
             for (int i = 0; i < arr.length - 1; i++) {
+                  /*
                   if (arr[i+1] > arr[i]) {
                         k++;
+                        arr[k] = arr[i+1];
                   }
                   if (arr[i + 1] == arr[i]) {
                         arr[k] = arr[i+1];
+                  }*/
+                  if (arr[i + 1] > arr[i]) {
+                        k++;
                   }
+                  arr[k] = arr[i + 1];
             }
+            //swap last element in arr
+            k += 1;
+            arr[k] = arr[arr.length - 1];
+
             //create new arr with size k
             int[] result = new int[k];
             //put elements from old arr to new arr
