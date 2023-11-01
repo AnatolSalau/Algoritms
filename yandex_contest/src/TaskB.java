@@ -11,13 +11,7 @@ public class TaskB {
             System.out.println(maxOneLength);
 
       }
-      /*
-            count 4
-            tempCount 0
-            1111
-            0
 
-       */
       static int getMaxOneLength(int[] arr) {
             int count = 0;
             int tempCount = 0;
