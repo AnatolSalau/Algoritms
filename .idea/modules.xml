@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/Algoritms.iml" filepath="$PROJECT_DIR$/Algoritms.iml" />
       <module fileurl="file://$PROJECT_DIR$/addSeparatorAtString/addSeparatorAtString.iml" filepath="$PROJECT_DIR$/addSeparatorAtString/addSeparatorAtString.iml" />
       <module fileurl="file://$PROJECT_DIR$/allBalancedParantheses/allBalancedParantheses.iml" filepath="$PROJECT_DIR$/allBalancedParantheses/allBalancedParantheses.iml" />
+      <module fileurl="file://$PROJECT_DIR$/backTrackingAlgoritms/backTrackingAlgoritms.iml" filepath="$PROJECT_DIR$/backTrackingAlgoritms/backTrackingAlgoritms.iml" />
       <module fileurl="file://$PROJECT_DIR$/binarySearch/binarySearch.iml" filepath="$PROJECT_DIR$/binarySearch/binarySearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/blockingQueu/blockingQueu.iml" filepath="$PROJECT_DIR$/blockingQueu/blockingQueu.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonTree/commonTree.iml" filepath="$PROJECT_DIR$/commonTree/commonTree.iml" />
