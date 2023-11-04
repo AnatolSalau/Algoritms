@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class TaskG {
       /**
        * Не секрет, что некоторые программисты очень любят путешествовать.
@@ -26,6 +28,32 @@ public class TaskG {
        * которое нужно проехать, чтобы попасть из начальной точки маршрута в конечную. Если пути не существует, выведите -1.
        */
       public static void main(String[] args) {
+            Map<Integer,List<Integer>> citiesCoordinates = new HashMap<>();
+            citiesCoordinates.put(1, Arrays.asList(0, 0));
+            citiesCoordinates.put(2, Arrays.asList(0, 2));
+            citiesCoordinates.put(3, Arrays.asList(2, 2));
+            citiesCoordinates.put(4, Arrays.asList(0, 2));
+            citiesCoordinates.put(5, Arrays.asList(2, 2));
+            citiesCoordinates.put(6, Arrays.asList(2, 1));
+            citiesCoordinates.put(7, Arrays.asList(2, 1));
 
+            generateMatrix(citiesCoordinates);
+      }
+
+      static int[][] generateMatrix(Map<Integer, List<Integer>> citiesCoordinates) {
+            int[][] result = new int[citiesCoordinates.size() + 1][citiesCoordinates.size() + 1];
+            for (int i = 1; i < result.length ; i++) {
+                  for (int j = 1; j < result.length; j++) {
+                        result[i][j] = Math.abs(citiesCoordinates.get(i).get(0) - citiesCoordinates.get(j).get(0)) + Math.abs(citiesCoordinates.get(i).get(1) - citiesCoordinates.get(j).get(1));
+                  }
+            }
+            printMatrix(result);
+            return null;
+      }
+
+      static void printMatrix(int[][] matrix) {
+            for (int i = 0; i < matrix.length; i++) {
+                  System.out.println(Arrays.toString(matrix[i]));
+            }
       }
 }
