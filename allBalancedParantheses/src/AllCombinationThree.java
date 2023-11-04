@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class AllCombinationThree {
       public static void main(String[] args) {
@@ -15,7 +12,7 @@ public class AllCombinationThree {
 
             List<Character> mutation = new ArrayList<>();
 
-            Set<List<Character>> rightCombinations = new HashSet<>();
+            Set<List<Character>> rightCombinations = new LinkedHashSet<>();
 
             makeAllCombinations(list, mutation, rightCombinations, 0);
 
