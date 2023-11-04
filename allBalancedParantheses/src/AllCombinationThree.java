@@ -1,33 +1,34 @@
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class AllCombinationThree {
       public static void main(String[] args) {
             List<Character> list = new ArrayList<>();
             list.add('(');
             list.add('(');
-/*            list.add('(');
-            list.add(')');*/
+            list.add('(');
+            list.add(')');
             list.add(')');
             list.add(')');
 
             List<Character> mutation = new ArrayList<>();
 
-            List<Character> rightCombinations = new ArrayList<>();
+            Set<List<Character>> rightCombinations = new HashSet<>();
 
             makeAllCombinations(list, mutation, rightCombinations, 0);
+
+            System.out.println(rightCombinations);
       }
 
-      static void makeAllCombinations(List<Character> list, List<Character> mutation, List<Character> result, int depth ) {
+      static void makeAllCombinations(List<Character> list, List<Character> mutation, Set<List<Character>> result, int depth ) {
             // exit from recursion
             if (list.size() == 0) {
-                  System.out.println(mutation);
-                  return;
-            }
-            if (mutation.size() != 0 ) {
-                  if(isRegularBracketSequence(mutation) == false) {
-                        return;
+                  if (isRegularBracketExpression(mutation)) {
+                        result.add(mutation);
                   }
+                  return;
             }
 
             for (int i = 0;i < list.size() ; i++) {
@@ -46,25 +47,25 @@ public class AllCombinationThree {
 
                   depth++;
 
-                  makeAllCombinations(newList, newMutation, result,depth);
+                  if(!newMutation.isEmpty() && newMutation.get(0) == '(') {
+                        makeAllCombinations(newList, newMutation, result,depth);
+                  }
             }
       }
 
-      static boolean isRegularBracketSequence(List<Character> brackets) {
-            // check first
-            if (brackets.get(0) == ')') {
-                  return false;
-            }
-            // check last
-            if (brackets.get(brackets.size()-1) == '(') {
-                  return false;
-            }
+      static boolean isRegularBracketExpression (List<Character> bracketsList) {
+            if(bracketsList.isEmpty() || bracketsList.get(0) == ')' || bracketsList.get(bracketsList.size() - 1) == '(') return false;
+
             int count = 0;
-            for (int i = 0; i<brackets.size(); i ++) {
-                  if(brackets.get(i) == '(') count++;
-                  if(brackets.get(i) == ')') count--;
+            for (int i = 0; i < bracketsList.size(); i++) {
+                  if(bracketsList.get(i) == '(') {
+                        count++;
+                  } else {
+                        count--;
+                  }
             }
             if (count < 0) return false;
             return count == 0;
       }
+
 }
