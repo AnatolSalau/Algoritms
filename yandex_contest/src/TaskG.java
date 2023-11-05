@@ -30,13 +30,14 @@ public class TaskG {
       public static void main(String[] args) {
             Map<Integer,List<Integer>> citiesCoordinates = new HashMap<>();
             citiesCoordinates.put(1, Arrays.asList(0, 0));
-            citiesCoordinates.put(2, Arrays.asList(0, 2));
-            citiesCoordinates.put(3, Arrays.asList(2, 2));
-            citiesCoordinates.put(4, Arrays.asList(0, 2));
-            citiesCoordinates.put(5, Arrays.asList(2, 2));
+            citiesCoordinates.put(2, Arrays.asList(2, 0));
+            citiesCoordinates.put(3, Arrays.asList(0, 2));
+            citiesCoordinates.put(4, Arrays.asList(2, 2));
+/*            citiesCoordinates.put(5, Arrays.asList(2, 2));
             citiesCoordinates.put(6, Arrays.asList(2, 1));
-            citiesCoordinates.put(7, Arrays.asList(2, 1));
+            citiesCoordinates.put(7, Arrays.asList(2, 1));*/
 
+            printDistance(citiesCoordinates, 1,4);
             generateMatrix(citiesCoordinates);
       }
 
@@ -52,8 +53,21 @@ public class TaskG {
       }
 
       static void printMatrix(int[][] matrix) {
+            System.out.println("Numbers :  0  1  2  3  4  5  6  7");
             for (int i = 0; i < matrix.length; i++) {
                   System.out.println("City N" + i +" : " +  Arrays.toString(matrix[i]));
             }
+      }
+
+      static void printDistance(Map<Integer,List<Integer>> citiesCoordinates, int numberCiti1, int numberCiti2) {
+            Integer x1 = citiesCoordinates.get(numberCiti1).get(0);
+            Integer y1 = citiesCoordinates.get(numberCiti1).get(1);
+            Integer x2 = citiesCoordinates.get(numberCiti2).get(0);
+            Integer y2 = citiesCoordinates.get(numberCiti2).get(1);
+            int distance = Math.abs(x1 - x2) + Math.abs(y1 - y2);
+            System.out.println("Distance between cities : " + numberCiti1 + " and " + numberCiti2);
+            System.out.println("x"+ numberCiti1 +" = " + x1 + ", y"+ numberCiti1 +"= " + y1);
+            System.out.println("x"+ numberCiti2 +" = " + x2 + ", y"+ numberCiti2 +" = " + y2);
+            System.out.println("Distance = " + distance);
       }
 }
