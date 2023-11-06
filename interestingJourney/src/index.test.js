@@ -13,18 +13,18 @@ const testData = [
 
 
 let taskOne = inputProcessing(testData[0][0]);
-let taskTwo = inputProcessing(testData[1][0]);
-let taskThree = inputProcessing(testData[2][0]);
+/*let taskTwo = inputProcessing(testData[1][0]);
+let taskThree = inputProcessing(testData[2][0]);*/
 
 console.log("Task 1");
 console.log("From 1 to 3, distance = 2");
 console.log(taskOne);
 
 
-console.log("Task 2");
+/*console.log("Task 2");
 console.log("From 1 to 4, distance = 2");
 console.log(taskTwo);
 
 console.log("Task 3");
 console.log("From 1 to 4, distance = -1");
-console.log(taskThree);
+console.log(taskThree);*/

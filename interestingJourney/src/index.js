@@ -1,8 +1,11 @@
 function getDistanceBetween(a, b) {
       const [x1, y1] = a;
       const [x2, y2] = b;
-      let number = Math.abs(x1 - x2) + Math.abs(y1 - y2);
-      return number;
+      let distance = Math.abs(x1 - x2) + Math.abs(y1 - y2);
+      console.log(x1 + " " + y1);
+      console.log(x2 + " " + y2);
+      console.log("distance = " + distance);
+      return distance;
 }
 
 function bfs(startKey, finishKey, keysCount, fnCheckEdgeExist) {
