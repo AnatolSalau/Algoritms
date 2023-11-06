@@ -5,11 +5,11 @@ public class Main {
             int[] array = new int[] {10,9,8,7,6,5,4,3,2,1};
             //We can use Binary search only in sorted arrays
             doSort(array);
-            int elementToFind = 3;
-            //int indexRecursion = binarySearchRecursive(array, 0, array.length - 1, elementToFind);
+            int elementToFind = 7;
+            int indexRecursion = binarySearchRecursive(array, 0, array.length - 1, elementToFind);
             int indexIterable = binarySearchIterable(array, elementToFind);
             System.out.println("arr : " + Arrays.toString(array));
-            //System.out.println("Index number (recursion search) "+ elementToFind +" is " + indexRecursion );
+            System.out.println("Index number (recursion search) "+ elementToFind +" is " + indexRecursion );
             System.out.println("Index number (iterable search) "+ elementToFind +" is " + indexIterable );
 
       }
