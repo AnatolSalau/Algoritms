@@ -51,13 +51,13 @@ public class TaskG {
       static int searchInWidthPathBetweenCities(int[][] matrixGraph, int startCity, int endCity, int maxDistance) {
             Queue<Integer> queue = new LinkedList<>();
             Set<Integer> visited = new HashSet<>();
-            System.out.println("Search Start from city = " + startCity);
+            //System.out.println("Search Start from city = " + startCity);
             queue.offer(startCity);
 
             while (!queue.isEmpty()) {
                   Integer currentCity = queue.poll();
 
-                  System.out.println("search continued in city = " + currentCity);
+                  System.out.println("search in city = " + currentCity);
 
                   if(currentCity == endCity) {
                         System.out.println("City  number " + currentCity + " was founded");
@@ -70,19 +70,26 @@ public class TaskG {
                   System.out.println("distances to another cities : " + Arrays.toString(distancesFromCurrentCityToAnother));
                   for (int i = 1; i < distancesFromCurrentCityToAnother.length; i++) {
                         int currentDistance = distancesFromCurrentCityToAnother[i];
-                        if (currentDistance <= maxDistance || !visited.contains(i)) {
-                              queue.offer(i);
+                        System.out.println(currentDistance);
+                        if (!visited.contains(i)) {
+                              if (currentDistance > 0 && currentDistance <= maxDistance) {
+                                    queue.add(i);
+                                    visited.add(i);
+                              }
                         }
                   }
             }
-            System.out.println("End from ");
+            System.out.println("Citi didn't found : ");
+            System.out.println(visited);
             return visited.size();
       }
 
       static void printMatrix(int[][] matrix) {
-            System.out.println("Numbers :  0  1  2  3  4  5  6  7");
-            for (int i = 0; i < matrix.length; i++) {
-                  System.out.println("City N" + i +" : " +  Arrays.toString(matrix[i]));
+            System.out.println("Numbers :  1  2  3  4  5  6  7");
+            for (int i = 1; i < matrix.length; i++) {
+
+                  int[] ints = Arrays.copyOfRange(matrix[i], 1, matrix.length);
+                  System.out.println("City N" + i +" : " +  Arrays.toString(ints));
             }
       }
 
@@ -126,11 +133,11 @@ public class TaskG {
             Map<Integer,List<Integer>> citiesCoordinates = new HashMap<>();
             citiesCoordinates.put(1, Arrays.asList(0, 0));
             citiesCoordinates.put(2, Arrays.asList(1, 0));
-            citiesCoordinates.put(3, Arrays.asList(0, 1));
+            citiesCoordinates.put(3, Arrays.asList(0, 3));
             citiesCoordinates.put(4, Arrays.asList(1, 1));
             int maxDistance = 2;
             int startCity = 1;
-            int endCity = 4;
+            int endCity = 3;
             System.out.println();
             System.out.println("Test 2:");
             System.out.println("from :" + startCity + " to " + endCity);
