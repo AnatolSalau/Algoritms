@@ -38,7 +38,7 @@ public class Backtracking
       {
             Backtracking task = new Backtracking();
             // This is a size of balanced parentheses
-            int size = 4;
+            int size = 3;
             task.balancedBracket("", size, 0, 0);
       }
 }
