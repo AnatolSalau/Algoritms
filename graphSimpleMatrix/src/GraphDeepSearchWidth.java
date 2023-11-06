@@ -32,17 +32,17 @@ public class GraphDeepSearchWidth {
 
             while (!queue.isEmpty()) {
                   Integer currentVertex = queue.remove();
-
+                  visited.add(currentVertex);
                   if(currentVertex == numberVertexFound) { //search element
+                        System.out.println("Path : " + visited); // print path
                         return;
                   }
-                  visited.add(currentVertex);
+
                   boolean[] currentVertexMatrix = graphMatrix[currentVertex]; //all link with other vertexes
                   for (int i = 0; i<currentVertexMatrix.length; i++) {
                         if(currentVertexMatrix[i]) { //if links is true
                               if (!visited.contains(i)) { //if link isn't in visited -> add to queue
                                     queue.add(i);
-                                    break;
                               }
                         }
                   }
@@ -94,6 +94,6 @@ public class GraphDeepSearchWidth {
             g.addEdge(8,7);
 
             //System.out.println(g.toString());
-            g.searchInWidth(1,6);
+            g.searchInWidth(1,8);
       }
 }
