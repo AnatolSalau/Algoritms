@@ -16,20 +16,59 @@ public class PartitionLabels {
             testOne();
       }
 
+      /*    ababcbaca defegde hijhklij
+           {a=8, b=5, c=7, d=14, e=15, f=11, g=13, h=19, i=22, j=23, k=20, l=21}
+           The partition is "ababcbaca", "defegde", "hijhklij".
+            [9,7,8]
+            a b a b c b a c a
+            partIndex = 0
+            length = 0
+            for
+            char - Max(Map(char), partIndex) -> partIndex = max
+            0(a) - 8 or 0 -> partIndex = 8, length = 0
+            1(b) - 5 or 8 -> partIndex = 8, length = 1
+            2(a) - 8 or 8 -> partIndex = 8, length = 2
+            3(b) - 5 or 8 -> partIndex = 8, length = 3
+            4(c) - 7 or 8 -> partIndex = 8, length = 4
+            5(b) - 5 or 8 -> partIndex = 8, length = 5
+            6(a) - 8 or 8 -> partIndex = 8, length = 6
+            7(c) - 7 or 8 -> partIndex = 8, length = 7
+            8(a) - 8 or 8 -> partIndex = 8, length = 8 ( i == partIndex, length to answer) length = 0
+            9(d) - 14 or 9 -> partIndex = 14, length = 1
+            10(e) - 15 or 14 -> partIndex = 15, length = 2
+            11(f) - 11 or 15 -> partIndex = 15, length = 3
+            12(e) - 15 or 15 -> partIndex = 15, length = 4
+            13(g) - 13 or 15 -> partIndex = 15, length = 5
+            14(d) - 14 or 15 -> partIndex = 15, length = 6
+            15(e) - 15 or 15 -> partIndex = 15, length = 6 ( i == partIndex, length to answer) length = 0
+       */
       static List<Integer> getPartitionIndexes(String str) {
-            List<Integer> result = new ArrayList<>();
+
             char[] chars = str.toCharArray();
+
             HashMap<Character, Integer> lastPositionMap = new HashMap<>();
 
-            int currPartitionIndex = 0;
             //to fill lastPositionMap
             for (int i = 0; i < chars.length; i++) {
                   Character currentCharacter = chars[i];
-                  if (!lastPositionMap.containsKey(currentCharacter)) {
-                        currPartitionIndex = i;
-
-                  }
                   lastPositionMap.put(currentCharacter, i);
+            }
+
+            List<Integer> result = new ArrayList<>();
+
+            System.out.println(lastPositionMap);
+
+            int currPartitionIndex = 0;
+            int partitionLength = 0;
+            for (int i = 0; i < chars.length; i++) {
+                  Character currentCharacter = chars[i];
+                  int val = lastPositionMap.get(currentCharacter).intValue();
+                  currPartitionIndex = val > currPartitionIndex ? val : currPartitionIndex;
+                  partitionLength ++;
+                  if (i == currPartitionIndex) {
+                        result.add(partitionLength);
+                        partitionLength = 0;
+                  }
             }
 
             return result;
