@@ -63,9 +63,10 @@ public class MergeKSortedLists {
                   ListNode node = minHeap.poll();
                   prev.next = node;
                   prev = node;
-                  prev.next = null;
+                  if (minHeap.isEmpty()) {
+                        node.next = null;
+                  }
             }
-
             return head;
       }
 
