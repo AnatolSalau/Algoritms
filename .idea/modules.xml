@@ -19,6 +19,7 @@
       <module fileurl="file://$PROJECT_DIR$/interestingJourney/interestingJourney.iml" filepath="$PROJECT_DIR$/interestingJourney/interestingJourney.iml" />
       <module fileurl="file://$PROJECT_DIR$/isAnagramOrNot/isAnagramOrNot.iml" filepath="$PROJECT_DIR$/isAnagramOrNot/isAnagramOrNot.iml" />
       <module fileurl="file://$PROJECT_DIR$/isIsomorphicStrings/isIsomorphicStrings.iml" filepath="$PROJECT_DIR$/isIsomorphicStrings/isIsomorphicStrings.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mergeKSortedLists/mergeKSortedLists.iml" filepath="$PROJECT_DIR$/mergeKSortedLists/mergeKSortedLists.iml" />
       <module fileurl="file://$PROJECT_DIR$/quick_sort/quick_sort.iml" filepath="$PROJECT_DIR$/quick_sort/quick_sort.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" filepath="$PROJECT_DIR$/reverseDoubleLinkedList/reverseDoubleLinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" filepath="$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" />
