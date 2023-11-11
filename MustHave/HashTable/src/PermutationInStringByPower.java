@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class PermutationInStringArray {
+public class PermutationInStringByPower {
       /**
        Given two strings s1 and s2, return true if s2 contains a permutation of s1, or false otherwise.
 
@@ -18,12 +18,12 @@ public class PermutationInStringArray {
        */
 
       public static void main(String[] args) {
-            PermutationInStringArray permutationInStringArray = new PermutationInStringArray();
+            PermutationInStringByPower permutationInStringByPower = new PermutationInStringByPower();
             String s1 = "abc", s2 = "eidbaooo";
-            ArrayList<String> allPermutation = new ArrayList<>(permutationInStringArray.getFactorial(s1.length()));
-            permutationInStringArray.getAllPermutation(s1, "", allPermutation );
+            ArrayList<String> allPermutation = new ArrayList<>(permutationInStringByPower.getFactorial(s1.length()));
+            permutationInStringByPower.getAllPermutation(s1, "", allPermutation );
             System.out.println(allPermutation);
-            System.out.println(permutationInStringArray.isContainPermutation(s2,s1));
+            System.out.println(permutationInStringByPower.isContainPermutation(s2,s1));
       }
 
       boolean isContainPermutation(String text, String sample) {
