@@ -6,7 +6,6 @@
       <module fileurl="file://$PROJECT_DIR$/Algoritms.iml" filepath="$PROJECT_DIR$/Algoritms.iml" />
       <module fileurl="file://$PROJECT_DIR$/MustHave/HashTable/HashTable.iml" filepath="$PROJECT_DIR$/MustHave/HashTable/HashTable.iml" />
       <module fileurl="file://$PROJECT_DIR$/MustHave/MustHave.iml" filepath="$PROJECT_DIR$/MustHave/MustHave.iml" />
-      <module fileurl="file://$PROJECT_DIR$/MustHave/Sorts.iml" filepath="$PROJECT_DIR$/MustHave/Sorts.iml" />
       <module fileurl="file://$PROJECT_DIR$/MustHave/TwoPointers/TwoPointers.iml" filepath="$PROJECT_DIR$/MustHave/TwoPointers/TwoPointers.iml" />
       <module fileurl="file://$PROJECT_DIR$/addSeparatorAtString/addSeparatorAtString.iml" filepath="$PROJECT_DIR$/addSeparatorAtString/addSeparatorAtString.iml" />
       <module fileurl="file://$PROJECT_DIR$/allBalancedParantheses/allBalancedParantheses.iml" filepath="$PROJECT_DIR$/allBalancedParantheses/allBalancedParantheses.iml" />
@@ -27,6 +26,7 @@
       <module fileurl="file://$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" filepath="$PROJECT_DIR$/reverseLinkedList/reverseLinkedList.iml" />
       <module fileurl="file://$PROJECT_DIR$/reverseString/reverseString.iml" filepath="$PROJECT_DIR$/reverseString/reverseString.iml" />
       <module fileurl="file://$PROJECT_DIR$/search_in_string/search_in_string.iml" filepath="$PROJECT_DIR$/search_in_string/search_in_string.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MustHave/searches.iml" filepath="$PROJECT_DIR$/MustHave/searches.iml" />
       <module fileurl="file://$PROJECT_DIR$/yandex_contest/yandex_contest.iml" filepath="$PROJECT_DIR$/yandex_contest/yandex_contest.iml" />
     </modules>
   </component>
