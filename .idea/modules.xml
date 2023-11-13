@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/Algoritms.iml" filepath="$PROJECT_DIR$/Algoritms.iml" />
       <module fileurl="file://$PROJECT_DIR$/MustHave/HashTable/HashTable.iml" filepath="$PROJECT_DIR$/MustHave/HashTable/HashTable.iml" />
       <module fileurl="file://$PROJECT_DIR$/MustHave/MustHave.iml" filepath="$PROJECT_DIR$/MustHave/MustHave.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MustHave/Sort.iml" filepath="$PROJECT_DIR$/MustHave/Sort.iml" />
       <module fileurl="file://$PROJECT_DIR$/MustHave/TwoPointers/TwoPointers.iml" filepath="$PROJECT_DIR$/MustHave/TwoPointers/TwoPointers.iml" />
       <module fileurl="file://$PROJECT_DIR$/addSeparatorAtString/addSeparatorAtString.iml" filepath="$PROJECT_DIR$/addSeparatorAtString/addSeparatorAtString.iml" />
       <module fileurl="file://$PROJECT_DIR$/allBalancedParantheses/allBalancedParantheses.iml" filepath="$PROJECT_DIR$/allBalancedParantheses/allBalancedParantheses.iml" />
