@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class MergeIntervals {
       /**
@@ -36,9 +38,62 @@ public class MergeIntervals {
             System.out.println("Interfals before sort : " + Arrays.deepToString(arrays));
             mergeIntervals.sortIntervalsQuick(arrays,0,arrays.length - 1);
             System.out.println("Interfals after sort : " + Arrays.deepToString(arrays));
+            List<List<Integer>> nonOverlappingIntervals = mergeIntervals.getNonOverlappingIntervals(arrays);
+            System.out.println("Non overlapping arrays : " + nonOverlappingIntervals);
 
       }
+      /*    i=1                                                                           j=0
+            [[1, 3], [2, 6], [2, 4], [8, 10], [8, 9], [9, 11], [15, 18], [16, 17]]      [[1, 3]]
+            for :
+            [[1, 3]]
+                      i=1                                                                           j=1
+            [[1, 3], [2, 6], [2, 4], [8, 10], [8, 9], [9, 11], [15, 18], [16, 17]]       [[1, 3], [2, 6]]
 
+            [[1, 3], [2, 6]]
+                              i=2                                                                  j=1
+            [[1, 3], [2, 6], [2, 4], [8, 10], [8, 9], [9, 11], [15, 18], [16, 17]]       [[1, 3], [2, 6]]
+
+            [[1, 3], [2, 6]]
+                                      i=3                                                                  j=2
+            [[1, 3], [2, 6], [2, 4], [8, 10], [8, 9], [9, 11], [15, 18], [16, 17]]       [[1, 3], [2, 6], [8, 10]]
+
+            [[1, 3], [2, 6], [8, 10]]
+                                               i=4                                                         j=2
+            [[1, 3], [2, 6], [2, 4], [8, 10], [8, 9], [9, 11], [15, 18], [16, 17]]       [[1, 3], [2, 6], [8, 10]]
+       */
+      List<List<Integer>> getNonOverlappingIntervals(int[][] intervals) {
+                  List<List<Integer>> result = new ArrayList<>();
+
+                  result.add(new ArrayList<>(List.of(intervals[0][0], intervals[0][1])));
+
+            for (int i = 1; i < intervals.length; i++) {
+                  int rightStart = intervals[i][0];
+                  int rightEnd = intervals[i][1];
+
+                  int j = result.size() - 1;
+                  int leftStart = result.get(j).get(0);
+                  int leftEnd = result.get(j).get(1);
+
+                  if (leftEnd >= rightStart) {
+                        List<Integer> temp = new ArrayList<>();
+                        int maxEnd = leftEnd > rightEnd ? leftEnd : rightEnd;
+                        temp.add(leftStart);
+                        temp.add(maxEnd);
+                        result.remove(j);
+                        result.add(temp);
+                  } else {
+                        List<Integer> temp = new ArrayList<>();
+                        temp.add(rightStart);
+                        temp.add(rightEnd);
+                        result.add(temp);
+                  }
+
+            }
+
+
+
+            return result;
+      }
       private void sortIntervalsBubble(int[][] intervals) {
             for (int i = 0; i < intervals.length - 1; i++) {
                   for (int j = i + 1; j < intervals.length ; j++) {
