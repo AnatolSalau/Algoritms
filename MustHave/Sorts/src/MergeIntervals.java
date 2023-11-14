@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MergeIntervals {
       /**
              Given an array of intervals where intervals[i] = [starti, endi], merge all overlapping intervals,
@@ -14,7 +16,7 @@ public class MergeIntervals {
              Explanation: Intervals [1,4] and [4,5] are considered overlapping.
        */
       public static void main(String[] args) {
-
+            test3();
       }
 
       static void test1() {
@@ -30,5 +32,29 @@ public class MergeIntervals {
       static void test3() {
             int[][] arrays = {{1,3},{2,6},{8,10},{8,9},{9,11},{15,18},{2,4},{16, 17}};
             int[][] expectedResult = {{1,6}, {8,11}, {15,18}};
+            MergeIntervals mergeIntervals = new MergeIntervals();
+            System.out.println("Interfals before sort : " + Arrays.deepToString(arrays));
+            mergeIntervals.sortIntervalsBubble(arrays);
+            System.out.println("Interfals after sort : " + Arrays.deepToString(arrays));
+      }
+
+      private void sortIntervalsBubble(int[][] intervals) {
+            for (int i = 0; i < intervals.length - 1; i++) {
+                  for (int j = i + 1; j < intervals.length ; j++) {
+                        if (intervals[i][0] > intervals[j][0]) {
+                              int[] temp = new int[2];
+                              temp[0] = intervals[j][0];
+                              temp[1] = intervals[j][1];
+                              intervals[j][0] = intervals[i][0];
+                              intervals[j][1] = intervals[i][1];
+                              intervals[i][0] = temp[0];
+                              intervals[i][1] = temp[1];
+                        }
+                  }
+            }
+      }
+
+      private void sortIntervalsQuick(int[] array) {
+
       }
 }
