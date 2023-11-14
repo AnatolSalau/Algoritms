@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 public class ValidParentheses {
       /**
              Given a string s containing just the characters '(', ')', '{', '}', '[' and ']',
@@ -22,24 +24,53 @@ public class ValidParentheses {
              Output: false
        */
       public static void main(String[] args) {
-
+            test1();
       }
       static void test1() {
             String str = "()";
             boolean expectedResult = true;
+            ValidParentheses validParentheses = new ValidParentheses();
+            boolean result = validParentheses.isValidParentheses(str);
+            System.out.println(result);
       }
 
       static void test2() {
             String str = "()[]{}";
             boolean expectedResult = true;
+            ValidParentheses validParentheses = new ValidParentheses();
+            boolean result = validParentheses.isValidParentheses(str);
+            System.out.println(result);
       }
 
       static void test3() {
             String str = "(]";
             boolean expectedResult = true;
+            ValidParentheses validParentheses = new ValidParentheses();
+            boolean result = validParentheses.isValidParentheses(str);
+            System.out.println(result);
       }
 
       boolean isValidParentheses(String str) {
+            char[] characters = str.toCharArray();
+            Stack<Character> stack = new Stack<>();
+
+            for (int i = 0; i < characters.length; i++) {
+                  char c = characters[i];
+
+                  if(c == '(') {
+                        stack.add(')');
+                  }
+                  if(c == '[') {
+                        stack.add(']');
+                  }
+                  if(c == '{') {
+                        stack.add('}');
+                  }
+
+                  if (stack.isEmpty()) return false;
+
+                  if (stack.pop() != c) return false;
+            }
             return true;
       }
 }
