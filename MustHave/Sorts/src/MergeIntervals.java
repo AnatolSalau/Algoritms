@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class MergeIntervals {
@@ -18,17 +19,33 @@ public class MergeIntervals {
              Explanation: Intervals [1,4] and [4,5] are considered overlapping.
        */
       public static void main(String[] args) {
+            test1();
+            System.out.println();
+            test2();
+            System.out.println();
             test3();
       }
 
       static void test1() {
             int[][] arrays = {{1,3},{2,6},{8,10},{15,18}};
             int[][] expectedResult = {{1,6},{8,10},{15,18}};
+            MergeIntervals mergeIntervals = new MergeIntervals();
+            System.out.println("Interfals before sort : " + Arrays.deepToString(arrays));
+            mergeIntervals.sortIntervalsQuick(arrays,0,arrays.length - 1);
+            System.out.println("Interfals after sort : " + Arrays.deepToString(arrays));
+            List<List<Integer>> nonOverlappingIntervals = mergeIntervals.getNonOverlappingIntervals(arrays);
+            System.out.println("Non overlapping arrays : " + nonOverlappingIntervals);
       }
 
       static void test2() {
             int[][] arrays = {{1,4},{4,5}};
             int[][] expectedResult = {{1,5}};
+            MergeIntervals mergeIntervals = new MergeIntervals();
+            System.out.println("Interfals before sort : " + Arrays.deepToString(arrays));
+            mergeIntervals.sortIntervalsQuick(arrays,0,arrays.length - 1);
+            System.out.println("Interfals after sort : " + Arrays.deepToString(arrays));
+            List<List<Integer>> nonOverlappingIntervals = mergeIntervals.getNonOverlappingIntervals(arrays);
+            System.out.println("Non overlapping arrays : " + nonOverlappingIntervals);
       }
 
       static void test3() {
@@ -62,7 +79,7 @@ public class MergeIntervals {
             [[1, 3], [2, 6], [2, 4], [8, 10], [8, 9], [9, 11], [15, 18], [16, 17]]       [[1, 3], [2, 6], [8, 10]]
        */
       List<List<Integer>> getNonOverlappingIntervals(int[][] intervals) {
-                  List<List<Integer>> result = new ArrayList<>();
+                  List<List<Integer>> result = new LinkedList<>();
 
                   result.add(new ArrayList<>(List.of(intervals[0][0], intervals[0][1])));
 
