@@ -25,6 +25,8 @@ public class ValidParentheses {
        */
       public static void main(String[] args) {
             test1();
+            test2();
+            test3();
       }
       static void test1() {
             String str = "()";
@@ -49,7 +51,14 @@ public class ValidParentheses {
             boolean result = validParentheses.isValidParentheses(str);
             System.out.println(result);
       }
+      /*
+            ()[]{}
+                  ( | )
+                  ) |
+                  [ | ]
+                  ] |
 
+       */
       boolean isValidParentheses(String str) {
             char[] characters = str.toCharArray();
             Stack<Character> stack = new Stack<>();
@@ -59,12 +68,15 @@ public class ValidParentheses {
 
                   if(c == '(') {
                         stack.add(')');
+                        continue;
                   }
                   if(c == '[') {
                         stack.add(']');
+                        continue;
                   }
                   if(c == '{') {
                         stack.add('}');
+                        continue;
                   }
 
                   if (stack.isEmpty()) return false;
