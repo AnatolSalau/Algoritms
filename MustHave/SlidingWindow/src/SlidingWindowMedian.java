@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.TreeSet;
+
 public class SlidingWindowMedian {
       /**
              The median is the middle value in an ordered integer list.
@@ -21,7 +25,7 @@ public class SlidingWindowMedian {
              Explanation:
              Window position                Median
              ---------------                -----
-             [1  3  -1] -3  5  3  6  7        1
+             [1  3  -1] -3  5  3  6  7       1
              1 [3  -1  -3] 5  3  6  7       -1
              1  3 [-1  -3  5] 3  6  7       -1
              1  3  -1 [-3  5  3] 6  7        3
@@ -32,7 +36,90 @@ public class SlidingWindowMedian {
              Input: nums = [1,2,3,4,2,3,1,4,2], k = 3
              Output: [2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000]
        */
-      public static void main(String[] args) {
 
+      public static void main(String[] args) {
+            test1();
+      }
+
+      /*
+            2 3 3 5 7 10 - 4 (even length (3+5)/2 = median is 4
+
+            1,3,-1,-3,5,3,6,7   k=3
+
+            1 3 -1  sort->  -1 1 3 (median is 1)
+            3  -1  -3 sort-> -3 -1 3 (median is -1)
+            -1  -3  5 sort-> -3 -1 5 (median is -1)
+            -3  5  3 sort-> -3 3 5 (median is 3)
+            5  3  6 sort-> 3 5 6 (median is 5)
+            3  6  7 sort-> 3 6 7 (median is 6)
+      */
+      /*
+            1,3,-1,-3,5,3,6,7   k=3 maxHeap     minHeap
+            1 3 -1                  -1         13          (median is 1)
+              3 -1 -3                  -3         -13          (median is -1)
+                -1 -3 5                  -3         -15          (median is -1)
+                   -3 5 3                  -3          35          (median is 3)
+                      5 3 6                   3          56          (median is 5)
+                        3 6 7                   3          67          (median is 6)
+       */
+      static void test1() {
+            int[] arr = {1,3,-1,-3,5,3,6,7};
+            int k = 4;
+            double[] expected = {1.00000,-1.00000,-1.00000,3.00000,5.00000,6.00000};
+            SlidingWindowMedian slidingWindowMedian = new SlidingWindowMedian();
+            slidingWindowMedian.getMediansList(arr, k);
+      }
+      /*
+            1 2 3 4 2 3 1 4 2  k=3
+
+            1 2 3 sort-> 1 2 3 (median is 2)
+            2 3 4 sort-> 2 3 4 (median is 3)
+            3 4 2 sort-> 2 3 4 (median is 3)
+            4 2 3 sort-> 2 3 4 (median is 3)
+            2 3 1 sort-> 1 2 3 (median is 2)
+            3 1 4 sort-> 1 3 4 (median is 3)
+            1 4 2 sort-> 1 2 4 (median is 2)
+       */
+      static void test2() {
+            int[] arr = {1,2,3,4,2,3,1,4,2};
+            int k = 3;
+            double[] expected = {2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000};
+      }
+
+      List<Double> getMediansList(int[] arr, int k) {
+            TreeSet<Integer> leftSet = new TreeSet<>();
+            TreeSet<Integer> rightSet = new TreeSet<>();
+
+            /*
+                  0 1 2 3 4 5, k = 6
+                  k = 6, 6/2 = 3;  left for 3 (0 1 2 )  right for 3 (3 4 5 6)
+
+                  0 1 2 3 4 5 6, k = 7
+                  k = 7, 7/2 = 3;  left for 3 (0 1 2)  right for 3 (3 4 5 6)
+
+                  0 1 2
+                  k = 3, 3/2 = 1;  left for 1 (0)  right for 1 (1 2)
+             */
+            Arrays.sort(arr);
+            int middle = k/2;
+            for (int i = 0; i < middle; i++) { // fill leftSet
+                  leftSet.add(arr[i]);
+            }
+            for (int i = middle; i < k; i++) { // fill rightSet
+                  rightSet.add(arr[i]);
+            }
+
+            double median = 0.0;
+            int leftMax = leftSet.pollLast();
+            int rightMin = rightSet.pollFirst();
+
+            if ( k%2 == 0) {
+                  median = (leftMax + rightMin) / 2 ;
+            } else {
+                  median = rightMin;
+            }
+
+
+            return null;
       }
 }
