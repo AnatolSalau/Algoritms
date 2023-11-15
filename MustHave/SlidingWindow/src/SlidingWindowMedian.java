@@ -62,15 +62,19 @@ public class SlidingWindowMedian {
                    -3 5 3                  -3          35          (median is 3)
                       5 3 6                   3          56          (median is 5)
                         3 6 7                   3          67          (median is 6)
+           1,3,-1,-3,5,3,6,7
+
+           -1 1 3
+
        */
       static void test1() {
             int[] arr = {1,3,-1,-3,5,3,6,7};
             int k = 3;
             double[] expected = {1.00000,-1.00000,-1.00000,3.00000,5.00000,6.00000};
-
+            System.out.println("Arr =" + Arrays.toString(arr));
+            System.out.println("k =" + k);
             SlidingWindowMedian slidingWindowMedian = new SlidingWindowMedian();
             List<Double> result = slidingWindowMedian.getMediansList(arr, k);
-
             System.out.println("Expected result =" + Arrays.toString(expected));
             System.out.println("My result =" + result);
       }
@@ -90,57 +94,30 @@ public class SlidingWindowMedian {
             int k = 3;
             double[] expected = {2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000};
       }
+      /*
+                       0 1 2 3 4 5, k = 6
+                       k = 6, 6/2 = 3;  left for 3 (0 1 2 )  right for 3 (3 4 5 6)
 
+                       0 1 2 3 4 5 6, k = 7
+                       k = 7, 7/2 = 3;  left for 3 (0 1 2)  right for 3 (3 4 5 6)
+
+                       0 1 2
+                       k = 3, 3/2 = 1;  left for 1 (0)  right for 1 (1 2)
+                  */
       List<Double> getMediansList(int[] arr, int k) {
             List<Double> result = new ArrayList<>();
             TreeSet<Integer> leftSet = new TreeSet<>();
             TreeSet<Integer> rightSet = new TreeSet<>();
+            int [] startSortedWindow = new int[k];
 
-            /*
-                  0 1 2 3 4 5, k = 6
-                  k = 6, 6/2 = 3;  left for 3 (0 1 2 )  right for 3 (3 4 5 6)
-
-                  0 1 2 3 4 5 6, k = 7
-                  k = 7, 7/2 = 3;  left for 3 (0 1 2)  right for 3 (3 4 5 6)
-
-                  0 1 2
-                  k = 3, 3/2 = 1;  left for 1 (0)  right for 1 (1 2)
-             */
-            /**
-             * !!!!!!!!!
-             * надо сортировать не весь массив, а только окно
-             */
-            Arrays.sort(arr);
-            System.out.println("Arr =" + Arrays.toString(arr));
-            int middle = k/2;
-            for (int i = 0; i < middle; i++) { // fill leftSet
+            for (int i = 0; i < arr.length; i++) {
                   leftSet.add(arr[i]);
             }
-            for (int i = middle; i < k; i++) { // fill rightSet
-                  rightSet.add(arr[i]);
+
+            while (!leftSet.isEmpty()) {
+                  Integer pollFirst = leftSet.pollFirst();
+                  System.out.println("pollFirst" + pollFirst);
             }
-
-            double median = 0.0;
-            for (int i = 0, j = k; i < arr.length; i++) {
-                  System.out.println("left :" + leftSet);
-                  System.out.println("right :" + rightSet);
-                  System.out.println();
-                  if (j >= arr.length) break;
-                  int leftMax = leftSet.pollLast();
-                  int rightMin = rightSet.pollFirst();
-                  leftSet.add(rightMin);
-                  rightSet.add(arr[j]);
-                  j++;
-                  if ( k%2 == 0) {
-                        median = (leftMax + rightMin) / 2 ;
-                  } else {
-                        median = rightMin;
-                  }
-                  result.add(median);
-            }
-
-
-
             return result;
       }
 }
