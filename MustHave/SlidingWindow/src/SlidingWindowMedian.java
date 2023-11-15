@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
@@ -64,10 +65,14 @@ public class SlidingWindowMedian {
        */
       static void test1() {
             int[] arr = {1,3,-1,-3,5,3,6,7};
-            int k = 4;
+            int k = 3;
             double[] expected = {1.00000,-1.00000,-1.00000,3.00000,5.00000,6.00000};
+
             SlidingWindowMedian slidingWindowMedian = new SlidingWindowMedian();
-            slidingWindowMedian.getMediansList(arr, k);
+            List<Double> result = slidingWindowMedian.getMediansList(arr, k);
+
+            System.out.println("Expected result =" + Arrays.toString(expected));
+            System.out.println("My result =" + result);
       }
       /*
             1 2 3 4 2 3 1 4 2  k=3
@@ -87,6 +92,7 @@ public class SlidingWindowMedian {
       }
 
       List<Double> getMediansList(int[] arr, int k) {
+            List<Double> result = new ArrayList<>();
             TreeSet<Integer> leftSet = new TreeSet<>();
             TreeSet<Integer> rightSet = new TreeSet<>();
 
@@ -100,7 +106,12 @@ public class SlidingWindowMedian {
                   0 1 2
                   k = 3, 3/2 = 1;  left for 1 (0)  right for 1 (1 2)
              */
+            /**
+             * !!!!!!!!!
+             * надо сортировать не весь массив, а только окно
+             */
             Arrays.sort(arr);
+            System.out.println("Arr =" + Arrays.toString(arr));
             int middle = k/2;
             for (int i = 0; i < middle; i++) { // fill leftSet
                   leftSet.add(arr[i]);
@@ -110,16 +121,26 @@ public class SlidingWindowMedian {
             }
 
             double median = 0.0;
-            int leftMax = leftSet.pollLast();
-            int rightMin = rightSet.pollFirst();
-
-            if ( k%2 == 0) {
-                  median = (leftMax + rightMin) / 2 ;
-            } else {
-                  median = rightMin;
+            for (int i = 0, j = k; i < arr.length; i++) {
+                  System.out.println("left :" + leftSet);
+                  System.out.println("right :" + rightSet);
+                  System.out.println();
+                  if (j >= arr.length) break;
+                  int leftMax = leftSet.pollLast();
+                  int rightMin = rightSet.pollFirst();
+                  leftSet.add(rightMin);
+                  rightSet.add(arr[j]);
+                  j++;
+                  if ( k%2 == 0) {
+                        median = (leftMax + rightMin) / 2 ;
+                  } else {
+                        median = rightMin;
+                  }
+                  result.add(median);
             }
 
 
-            return null;
+
+            return result;
       }
 }
