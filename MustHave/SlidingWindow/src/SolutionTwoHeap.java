@@ -3,10 +3,10 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
-class Solution {
+class SolutionTwoHeap {
       Queue<Integer> minHeap;
       Queue<Integer> maxHeap;
-      public Solution(){
+      public SolutionTwoHeap(){
             minHeap = new PriorityQueue<>();
             maxHeap = new PriorityQueue<>(Collections.reverseOrder());
       }
@@ -61,7 +61,7 @@ class Solution {
       }
 
       public static void main(String[] args) {
-            Solution solution = new Solution();
+            SolutionTwoHeap solution = new SolutionTwoHeap();
 
             int[] arr = {1,3,-1,-3,5,3,6,7};
             int k = 3;
