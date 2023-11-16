@@ -5,6 +5,9 @@ import java.util.TreeSet;
 
 public class SlidingWindowMedianPower {
       /**
+       O(nklogk) - power metod
+       */
+      /**
              The median is the middle value in an ordered integer list.
              If the size of the list is even, there is no middle value.
              So the median is the mean of the two middle values.
