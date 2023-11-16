@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.TreeSet;
 
-public class SlidingWindowMedian {
+public class SlidingWindowMedianPower {
       /**
              The median is the middle value in an ordered integer list.
              If the size of the list is even, there is no middle value.
@@ -39,7 +39,9 @@ public class SlidingWindowMedian {
        */
 
       public static void main(String[] args) {
+
             test1();
+            test2();
       }
 
       /*
@@ -73,7 +75,7 @@ public class SlidingWindowMedian {
             double[] expected = {1.00000,-1.00000,-1.00000,3.00000,5.00000,6.00000};
             System.out.println("Arr =" + Arrays.toString(arr));
             System.out.println("k =" + k);
-            SlidingWindowMedian slidingWindowMedian = new SlidingWindowMedian();
+            SlidingWindowMedianPower slidingWindowMedian = new SlidingWindowMedianPower();
             List<Double> result = slidingWindowMedian.getMediansList(arr, k);
             System.out.println("Expected result =" + Arrays.toString(expected));
             System.out.println("My result =" + result);
@@ -93,30 +95,50 @@ public class SlidingWindowMedian {
             int[] arr = {1,2,3,4,2,3,1,4,2};
             int k = 3;
             double[] expected = {2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000};
+            System.out.println("Arr =" + Arrays.toString(arr));
+            System.out.println("k =" + k);
+            SlidingWindowMedianPower slidingWindowMedian = new SlidingWindowMedianPower();
+            List<Double> result = slidingWindowMedian.getMediansList(arr, k);
+            System.out.println("Expected result =" + Arrays.toString(expected));
+            System.out.println("My result =" + result);
       }
-      /*
-                       0 1 2 3 4 5, k = 6
-                       k = 6, 6/2 = 3;  left for 3 (0 1 2 )  right for 3 (3 4 5 6)
 
-                       0 1 2 3 4 5 6, k = 7
-                       k = 7, 7/2 = 3;  left for 3 (0 1 2)  right for 3 (3 4 5 6)
 
-                       0 1 2
-                       k = 3, 3/2 = 1;  left for 1 (0)  right for 1 (1 2)
-                  */
       List<Double> getMediansList(int[] arr, int k) {
             List<Double> result = new ArrayList<>();
-            TreeSet<Integer> leftSet = new TreeSet<>();
-            TreeSet<Integer> rightSet = new TreeSet<>();
-            int [] startSortedWindow = new int[k];
-
+            int[] medianArr = new int[k];
             for (int i = 0; i < arr.length; i++) {
-                  leftSet.add(arr[i]);
+                  int left = i;
+                  int right = i + k;
+                  if (right > arr.length) return result;
+                  medianArr = getMedianArr(arr,left,right, k);
+                  System.out.println(Arrays.toString(medianArr));
+                  double median = getMedian(medianArr);
+                  result.add(median);
             }
+            return result;
+      }
 
-            while (!leftSet.isEmpty()) {
-                  Integer pollFirst = leftSet.pollFirst();
-                  System.out.println("pollFirst" + pollFirst);
+      int[] getMedianArr(int[] arr, int start, int finish, int k) {
+            int[] result = new int[k];
+            int i = 0;
+            for ( ; start < finish; start++) {
+                  result[i] = arr[start];
+                  i++;
+            }
+            Arrays.sort(result);
+            return result;
+      }
+      /*
+             0 1 2 3, length = 4, length/2 = 2
+             0 1 2 3 5, length = 5, length/2 = 2
+       */
+      double getMedian(int[] medianArr) {
+            int result = 0;
+            if (medianArr.length % 2 == 0) { // even number
+                  result = (medianArr[medianArr.length/2] + medianArr[medianArr.length/2 - 1]) / 2;
+            } else { //odd number
+                  result = (medianArr[medianArr.length/2]);
             }
             return result;
       }
