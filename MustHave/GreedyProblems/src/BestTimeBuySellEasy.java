@@ -1,7 +1,6 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class BestTimeBuySell {
+public class BestTimeBuySellEasy {
       /**
              121. Best Time to Buy and Sell Stock
 
@@ -71,8 +70,8 @@ public class BestTimeBuySell {
             int[] prices = {7,1,5,3,6,4};
             int expected = 5;
             System.out.println(Arrays.toString(prices));
-            BestTimeBuySell bestTimeBuySell = new BestTimeBuySell();
-            int maxProfit = bestTimeBuySell.getMaxProfit(prices);
+            BestTimeBuySellEasy bestTimeBuySellEasy = new BestTimeBuySellEasy();
+            int maxProfit = bestTimeBuySellEasy.getMaxProfit(prices);
             System.out.println("Max profit : " + maxProfit);
             System.out.println("Expected result : " + expected);
             System.out.println();
@@ -84,8 +83,8 @@ public class BestTimeBuySell {
             int[] prices = {7,6,4,3,1};
             int expected = 0;
             System.out.println(Arrays.toString(prices));
-            BestTimeBuySell bestTimeBuySell = new BestTimeBuySell();
-            int maxProfit = bestTimeBuySell.getMaxProfit(prices);
+            BestTimeBuySellEasy bestTimeBuySellEasy = new BestTimeBuySellEasy();
+            int maxProfit = bestTimeBuySellEasy.getMaxProfit(prices);
             System.out.println("Max profit : " + maxProfit);
             System.out.println("Expected result : " + expected);
             System.out.println();
