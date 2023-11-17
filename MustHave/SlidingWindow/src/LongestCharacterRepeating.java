@@ -1,3 +1,8 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
 public class LongestCharacterRepeating {
       /**
        You are given a string s and an integer k.
@@ -22,7 +27,7 @@ public class LongestCharacterRepeating {
        There may exists other ways to achieve this answer too.
        */
       public static void main(String[] args) {
-
+            test1();
       }
       /*
                         0 1 2 3 4 5 6
@@ -104,8 +109,62 @@ public class LongestCharacterRepeating {
             int k = 2;
             int expected = 5;
             String longestRepeating = "bbbbb";
+            LongestCharacterRepeating longestCharacterRepeating = new LongestCharacterRepeating();
+            int result = longestCharacterRepeating.getMaxRepeatingOfElements(str, k);
+            System.out.println(str);
+            System.out.println("Result : " + result);
+            System.out.println("Expected : " + expected);
+            System.out.println();
       }
+/*
+                        0 1 2 3 4
+                        a b b c b, k=1
+                        se
 
+                  i:0   a b b c b,
+                       se
+                        a->1
+                        length = 1
+                        slots( length - maxFreq = slots <= k ) 1 - 1 = 0 <= 1 -> e++
+
+                  i:1   a b b c b,
+                        s e
+                        a->1
+                        b->1
+                        length = 2
+                        slots( length - maxFreq = slots <= k ) 2 - 1 = 1 <= 1 -> e++
+
+                  i:2   a b b c b,
+                        s   e
+                        a->1
+                        b->2
+                        length = 3
+                        slots( length - maxFreq = slots <= k ) 3 - 2 = 1 <= 1 -> e++
+
+                  i:3   a b b c b,
+                        s     e
+                        a->1
+                        b->2
+                        c->1
+                        length = 4
+                        slots( length - maxFreq = slots <= k ) 4 - 2 = 2 <= 1 -> s++
+
+                  i:4   a b b c b,
+                          s   e
+                        a->0
+                        b->2
+                        c->1
+                        length = 3
+                        slots( length - maxFreq = slots <= k ) 3 - 2 = 1 <= 1 -> e++
+
+                  i:5   a b b c b,
+                          s     e
+                        a->0
+                        b->3
+                        c->1
+                        length = 4<-------------------------
+                        slots( length - maxFreq = slots <= k ) 4 - 3 = 1 <= 1 -> s++
+ */
       static void test2() {
             String str = "abbcb";
             int k = 1;
@@ -118,5 +177,53 @@ public class LongestCharacterRepeating {
             int k = 1;
             int expected = 3;
             String longestRepeating = "ccc";
+      }
+
+      int getMaxRepeatingOfElements(String str, int k) {
+            char[] chars = str.toCharArray();
+            int result = 0;
+            int leftIndex = 0;
+            int rightIndex = 0;
+
+            HashMap<Character, Integer> freqMap = new HashMap<>();
+
+            for (; leftIndex < chars.length;) {
+                  if (rightIndex > chars.length) return result;
+
+                  for (int i = leftIndex; i < rightIndex ; i++) {
+                        char currChar = chars[i];
+                        if (freqMap.containsKey(currChar)) {
+                              Integer count = freqMap.get(currChar);
+                              count ++;
+                              freqMap.put(currChar,count);
+                        } else {
+                              freqMap.put(currChar,1);
+                        }
+                  }
+
+                  int length = rightIndex - leftIndex + 1;
+                  int maxFreq = getMaxFreq(freqMap);
+                  int slots = leftIndex - maxFreq;
+
+                  if (slots <= k) {
+                        rightIndex++;
+                        result = length;
+                  } else {
+                        Character mostLefChar = chars[leftIndex];
+                        freqMap.remove(mostLefChar);
+                        leftIndex++;
+                  }
+            }
+            return result;
+      }
+
+      private int getMaxFreq(HashMap<Character, Integer> freqMap) {
+            int result = 0;
+            Set<Map.Entry<Character, Integer>> entries = freqMap.entrySet();
+            for (Map.Entry<Character, Integer> entry : entries) {
+                  Integer value = entry.getValue();
+                  if (value > result) result = value;
+            }
+            return result;
       }
 }
