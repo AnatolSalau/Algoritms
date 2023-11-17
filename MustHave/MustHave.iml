@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Stack/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/SlidingWindow/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/GreedyProblems/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Iterator/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
