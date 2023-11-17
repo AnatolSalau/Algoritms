@@ -27,7 +27,9 @@ public class LongestCharacterRepeating {
        There may exists other ways to achieve this answer too.
        */
       public static void main(String[] args) {
-            test1();
+/*            test1();
+            test2();*/
+            test3();
       }
       /*
                         0 1 2 3 4 5 6
@@ -170,6 +172,12 @@ public class LongestCharacterRepeating {
             int k = 1;
             int expected = 4;
             String longestRepeating = "bbbb";
+            LongestCharacterRepeating longestCharacterRepeating = new LongestCharacterRepeating();
+            int result = longestCharacterRepeating.getMaxRepeatingOfElements(str, k);
+            System.out.println(str);
+            System.out.println("Result : " + result);
+            System.out.println("Expected : " + expected);
+            System.out.println();
       }
 
       static void test3() {
@@ -177,6 +185,12 @@ public class LongestCharacterRepeating {
             int k = 1;
             int expected = 3;
             String longestRepeating = "ccc";
+            LongestCharacterRepeating longestCharacterRepeating = new LongestCharacterRepeating();
+            int result = longestCharacterRepeating.getMaxRepeatingOfElements(str, k);
+            System.out.println(str);
+            System.out.println("Result : " + result);
+            System.out.println("Expected : " + expected);
+            System.out.println();
       }
 
       int getMaxRepeatingOfElements(String str, int k) {
@@ -185,12 +199,12 @@ public class LongestCharacterRepeating {
             int leftIndex = 0;
             int rightIndex = 0;
 
-            HashMap<Character, Integer> freqMap = new HashMap<>();
-
             for (; leftIndex < chars.length;) {
-                  if (rightIndex > chars.length) return result;
+                  if (rightIndex >= chars.length) return result;
 
-                  for (int i = leftIndex; i < rightIndex ; i++) {
+                  HashMap<Character, Integer> freqMap = new HashMap<>();
+
+                  for (int i = leftIndex; i <= rightIndex ; i++) {
                         char currChar = chars[i];
                         if (freqMap.containsKey(currChar)) {
                               Integer count = freqMap.get(currChar);
@@ -203,14 +217,14 @@ public class LongestCharacterRepeating {
 
                   int length = rightIndex - leftIndex + 1;
                   int maxFreq = getMaxFreq(freqMap);
-                  int slots = leftIndex - maxFreq;
+                  int slots = length - maxFreq;
 
                   if (slots <= k) {
                         rightIndex++;
-                        result = length;
+                        result = result > length ? result : length;
+
                   } else {
                         Character mostLefChar = chars[leftIndex];
-                        freqMap.remove(mostLefChar);
                         leftIndex++;
                   }
             }
