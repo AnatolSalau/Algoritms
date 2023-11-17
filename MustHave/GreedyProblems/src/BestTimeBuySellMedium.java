@@ -30,6 +30,52 @@ public class BestTimeBuySellMedium {
 
        */
       public static void main(String[] args) {
+            testOne();
+            testTwo();
+      }
 
+      static void testOne() {
+            int[] prices = {7,1,5,3,6,4};
+            int expected = 7;
+            BestTimeBuySellMedium sellMedium = new BestTimeBuySellMedium();
+            int maxProfit = sellMedium.getMaxProfit(prices);
+            System.out.println(maxProfit);
+      }
+
+      static public void testTwo() {
+            int[] prices = {1,2,3,4,5};
+            int expected = 4;
+            BestTimeBuySellMedium sellMedium = new BestTimeBuySellMedium();
+            int maxProfit = sellMedium.getMaxProfit(prices);
+            System.out.println(maxProfit);
+      }
+
+      public void testThree() {
+            int[] prices = {7,6,4,3,1};
+            int expected = 0;
+      }
+
+      int getMaxProfit(int[] prices) {
+            int result = 0;
+            int priceBuy = prices[0];
+            int maxProfit = 0;
+
+            for (int i = 0; i < prices.length; i++) {
+                int currDay = i;
+                int priceCurr = prices[currDay];
+                int currProfit = priceCurr - priceBuy;
+
+                if (currProfit > maxProfit) {
+                      maxProfit += currProfit;
+                      result += maxProfit;
+                      maxProfit = 0;
+                      priceBuy = priceCurr;
+                } {
+                      if (priceCurr < priceBuy) {
+                            priceBuy = priceCurr;
+                      }
+                  }
+            }
+            return result;
       }
 }
