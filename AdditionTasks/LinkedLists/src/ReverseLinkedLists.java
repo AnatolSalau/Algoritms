@@ -28,21 +28,20 @@ public class ReverseLinkedLists {
       ListNode reverseListByStack(ListNode head) {
             Stack<ListNode> stack = new Stack<>();
 
-            ListNode curr = head;
+            ListNode curr = head; //add new link to head
             while (curr.next != null) { // fill stack
                   stack.push(curr);
                   curr = curr.next;
             }
-
-            head = stack.pop();
-            head.next = null;
+            head.next = null; // first element in stack, still have link to next, will make it null
+            head = curr;// last curr = new head of list
 
             while (!stack.isEmpty()) {
                   ListNode pop = stack.pop();
-                  if (head.next == null) {
+                  if (head.next == null) {//add next link in head
                         head.next = pop;
                         curr = pop;
-                  } else {
+                  } else {// add next link other elements
                         curr.next = pop;
                         curr = pop;
                   }
@@ -56,6 +55,7 @@ public class ReverseLinkedLists {
                   System.out.println(curr);
                   curr = curr.next;
             }
+            System.out.println(curr);
       }
       public static void main(String[] args) {
             testOne();
@@ -68,8 +68,10 @@ public class ReverseLinkedLists {
             ListNode list2 = new ListNode(2, list3);
             ListNode list1 = new ListNode(1, list2);
             ReverseLinkedLists reverseLinkedLists = new ReverseLinkedLists();
+            System.out.println("Linked list");
             reverseLinkedLists.printList(list1);
             ListNode result = reverseLinkedLists.reverseListByStack(list1);
+            System.out.println("Reversed list");
             reverseLinkedLists.printList(result);
       }
 
