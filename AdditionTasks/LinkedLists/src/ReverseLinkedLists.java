@@ -49,6 +49,34 @@ public class ReverseLinkedLists {
             return head;
       }
 
+      /*
+            1 -> 2 -> 3 ->4 ->5 -> null
+            prev(1)<- curr(2)-> last(3)
+                      prev(2)->  c
+       */
+      ListNode reverseList(ListNode head) {
+            ListNode start = null;
+
+            ListNode prev = head;
+            ListNode curr = head.next;
+            ListNode last = curr.next;
+
+            head.next = null;//make link null in order to break infinity loop
+
+            while (last != null) {
+                  curr.next = prev;
+                  prev = curr;
+                  curr = last;
+                  last = last.next;
+                  if(last == null) {// exit from cycle
+                       start = curr;
+                       start.next = prev;
+                  }
+            }
+
+            return start;
+      }
+
       void printList(ListNode head) {
             ListNode curr = head;
             while (curr.next != null) {
@@ -58,7 +86,8 @@ public class ReverseLinkedLists {
             System.out.println(curr);
       }
       public static void main(String[] args) {
-            testOne();
+            //testOne();
+            testTwo();
       }
 
       static void testOne() {
@@ -76,12 +105,17 @@ public class ReverseLinkedLists {
       }
 
       static void testTwo() {
-            ListNode list50 = new ListNode(5, null);
-            ListNode list40 = new ListNode(4, list50);
-            ListNode list30 = new ListNode(3, list40);
-            ListNode list20 = new ListNode(2, list30);
-            ListNode list10 = new ListNode(1, list20);
-            ListNode[] arr2 = {list10, list20, list30, list40, list50};
+            ListNode list50 = new ListNode(50, null);
+            ListNode list40 = new ListNode(40, list50);
+            ListNode list30 = new ListNode(30, list40);
+            ListNode list20 = new ListNode(20, list30);
+            ListNode list10 = new ListNode(10, list20);
+            ReverseLinkedLists reverseLinkedLists = new ReverseLinkedLists();
+            System.out.println("Linked list");
+            reverseLinkedLists.printList(list10);
+            ListNode result = reverseLinkedLists.reverseList(list10);
+            System.out.println("Reversed list");
+            reverseLinkedLists.printList(result);
       }
 
       static void testThree() {
