@@ -2,7 +2,7 @@ import java.util.*;
 
 public class FindNameTree {
       /**
-       Find name of employee
+            Find name of employee and print path from root to this employee
        */
       public static void main(String[] args) {
             //testOne();
