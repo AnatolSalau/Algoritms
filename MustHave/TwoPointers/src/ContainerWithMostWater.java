@@ -11,7 +11,18 @@ public class ContainerWithMostWater {
        *
        * Return the maximum amount of water a container can store.
        *
+       * Example 1:
        * Notice that you may not slant the container.
+       *
+       * Input: height = [1,8,6,2,5,4,8,3,7]
+       * Output: 49
+       * Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7].
+       * In this case, the max area of water (blue section) the container can contain is 49.
+       *
+       * Example 2:
+       *
+       * Input: height = [1,1]
+       * Output: 1
        */
       public static void main(String[] args) {
             arrayWithNineValuesTest();
@@ -47,9 +58,45 @@ public class ContainerWithMostWater {
             return maxSquare;
       }
 
+      /*          0 1 2 3 4 5 6 7 8
+                  1,8,6,2,5,4,8,3,7
+           i:0    l               r    1*7= 7
+           i:1      l             r    7*7= 49
+           i:2      l           r      3*6= 18
+           i:3      l         r        8*5= 40
+           i:4        l     r          4*3= 12
+           i:5        l   r            5*2= 10
+           i:6        l r              2*1= 2
+       */
+      static int maximumWaterTest(int[] heights) {
+            int lI = 0;
+            int rI = heights.length - 1;
+
+            int maxSquare = 0;
+
+            while (lI < rI) {
+                  int leftH = heights[lI];
+                  int rightH = heights[rI];
+
+                  int minH = leftH < rightH ? leftH : rightH;
+                  int width = rI - lI;
+                  int currSquare = width * minH;
+
+                  if (currSquare > maxSquare) maxSquare = currSquare;
+
+                  if (lI < rI) {
+                        lI++;
+                  } else {
+                        rI--;
+                  }
+            }
+            return maxSquare;
+      }
+
       static void arrayWithNineValuesTest() {
             int[] heights = {1,8,6,2,5,4,8,3,7};
-            int square = maximumWater(heights);
+            int square = maximumWaterTest(heights);
+            int expected = 49;
             System.out.println("Array : " + Arrays.toString(heights));
             System.out.println("Square : " + square);
       }
