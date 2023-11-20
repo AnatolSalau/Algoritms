@@ -62,8 +62,8 @@ public class PartitionLabels {
             int partitionLength = 0;
             for (int i = 0; i < chars.length; i++) {
                   Character currentCharacter = chars[i];
-                  int val = lastPositionMap.get(currentCharacter).intValue();
-                  currPartitionIndex = val > currPartitionIndex ? val : currPartitionIndex;
+                  int val = lastPositionMap.get(currentCharacter).intValue();// last index of char
+                  currPartitionIndex = val > currPartitionIndex ? val : currPartitionIndex; // curr index of char
                   partitionLength ++;
                   if (i == currPartitionIndex) {
                         result.add(partitionLength);
@@ -71,6 +71,31 @@ public class PartitionLabels {
                   }
             }
 
+            return result;
+      }
+
+      static List<Integer> getPartitionIndexesTest(String str) {
+            List<Integer> result = new LinkedList<>();
+            char[] chars = str.toCharArray();
+            HashMap<Character, Integer> lastIndexCharMap = new HashMap<>();
+
+            //fill lastIndexCharMap by last indexes from str
+            for (int i = 0; i < chars.length; i++) {
+                  lastIndexCharMap.put(chars[i], i);
+            }
+            int maxIndex = 0;
+            int lengthPartition = 0;
+            for (int i = 0; i < chars.length; i++) {
+                  char currChar = chars[i];
+                  int currIndex = lastIndexCharMap.get(currChar);
+
+                  maxIndex = currIndex > maxIndex ? currIndex : maxIndex;
+                  lengthPartition ++;
+                  if (i == maxIndex) {
+                        result.add(lengthPartition);
+                        lengthPartition = 0;
+                  }
+            }
             return result;
       }
       /**
@@ -85,7 +110,8 @@ public class PartitionLabels {
       private static void testOne() {
             String s = "ababcbacadefegdehijhklij";
             int[] rightAnswer = {9, 7, 8};
-            List<Integer> partitionIndexes = getPartitionIndexes(s);
+            System.out.println(s);
+            List<Integer> partitionIndexes = getPartitionIndexesTest(s);
             System.out.println("Test one");
             System.out.println("Right answer : " + Arrays.toString(rightAnswer));
             System.out.println("My answer : " + partitionIndexes);
