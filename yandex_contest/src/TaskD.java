@@ -9,35 +9,7 @@ public class TaskD {
        пропорциональное общему количеству правильных скобочных последовательностей в ответе,
        и при этом использует объём памяти, пропорциональный n.
        */
-      static void balancedBracket(String result,
-                           int size,
-                           int open,
-                           int close)
-      {
 
-            if (close == size)
-            {
-                  // When get the result of parentheses in given size
-                  System.out.println(result);
-                  return;
-            }
-            if (open < size)
-            {
-                  // Add open parentheses
-                  balancedBracket(result + "(",
-                        size,
-                        open + 1,
-                        close);
-            }
-            if (open > close)
-            {
-                  // Add close parentheses
-                  balancedBracket(result + ")",
-                        size,
-                        open,
-                        close + 1);
-            }
-      }
       public static void main(String[] args)
       {
             // This is a size of balanced parentheses
@@ -45,6 +17,21 @@ public class TaskD {
             int open = 0;
             int close = 0;
 
-            balancedBracket("", size, open, close);
+            printBalancedBracket("", size, open, close);
+      }
+
+      private static void printBalancedBracket(String result, int size, int open, int close) {
+            if (close == size) {
+                  System.out.println(result);
+                  return;
+            }
+
+            if (open < size) {
+                  printBalancedBracket(result + "(", size, open +1, close);
+            }
+
+            if(open > close) {
+                  printBalancedBracket(result + ")", size, open , close+1);
+            }
       }
 }
