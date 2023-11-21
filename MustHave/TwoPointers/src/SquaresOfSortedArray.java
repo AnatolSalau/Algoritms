@@ -83,8 +83,8 @@ public class SquaresOfSortedArray {
             int[] res = new int[arr.length];
             int left = 0;
             int right = arr.length - 1;
-            for (int i = res.length - 1; i >= 0 ; i--) {
-                  if (Math.abs(arr[left]) >= Math.abs(arr[right])) {
+            for (int i = 0; i < arr.length ; i--) {
+                  if (Math.abs(arr[left]) <= Math.abs(arr[right])) {
                         res[i] = arr[left] * arr[left];
                         left ++;
                   } else {
@@ -93,6 +93,18 @@ public class SquaresOfSortedArray {
                   }
             }
             return res;
+      }
+
+      private static int[] sortedSquaresTest(int[] arr) {
+            int lI = 0;
+            int rI = arr.length - 1;
+            int[] result = new int[arr.length];
+
+            for (int i = 0; i < arr.length; i++) {
+
+            }
+
+            return  result;
       }
 
 }

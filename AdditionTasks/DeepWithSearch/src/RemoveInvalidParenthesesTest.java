@@ -31,6 +31,8 @@ public class RemoveInvalidParenthesesTest {
             int qtyWrongParentheses = getQtyWrongParentheses(str);
             System.out.println(str);
             System.out.println("qtyWrongParentheses = " + qtyWrongParentheses);
+            String abc = "ABC";
+            allVariationParentheses(abc, 1);
       }
 
       public List<String> getAllValidParentheses(String string) {
@@ -39,8 +41,17 @@ public class RemoveInvalidParenthesesTest {
             return result;
       }
 
-      void allVariationParentheses(String str) {
-
+      static void allVariationParentheses(String str, int qtyWrongParenthesesAllowed) {
+            if (qtyWrongParenthesesAllowed == 0) {
+                  System.out.println(str);
+                  return;
+            }
+            for (int i = 0; i < str.length(); i++) {
+                  String left = str.substring(0, i);
+                  String right = str.substring(i+1);
+                  String newStr = left + right;
+                  allVariationParentheses(newStr, qtyWrongParenthesesAllowed - 1);
+            }
       }
 
       static private int getQtyWrongParentheses(String string) {
