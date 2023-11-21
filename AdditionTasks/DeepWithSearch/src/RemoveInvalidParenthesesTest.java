@@ -24,33 +24,31 @@ public class RemoveInvalidParenthesesTest {
        Output: [""]
        */
       public static void main(String[] args) {
-            //test1();
-            //test2();
-            //test3();
-            String str = ")(a)())()";
-            int qtyWrongParentheses = getQtyWrongParentheses(str);
-            System.out.println(str);
-            System.out.println("qtyWrongParentheses = " + qtyWrongParentheses);
-            String abc = "ABC";
-            allVariationParentheses(abc, 1);
+            test1();
+            test2();
+            test3();
+
       }
 
-      public List<String> getAllValidParentheses(String string) {
-            List<String> result = new ArrayList<>();
-
+      static public Set<String> getAllValidParentheses(String string) {
+            Set<String> result = new HashSet<>();
+            allVariationParentheses(string, getQtyWrongParentheses(string), result);
             return result;
       }
 
-      static void allVariationParentheses(String str, int qtyWrongParenthesesAllowed) {
+      static void allVariationParentheses(String str, int qtyWrongParenthesesAllowed, Set<String> result) {
             if (qtyWrongParenthesesAllowed == 0) {
-                  System.out.println(str);
+                  int qtyWrongParenthesesNow = getQtyWrongParentheses(str);
+                  if (qtyWrongParenthesesNow == 0 && !result.contains(str)) {
+                        result.add(str);
+                  }
                   return;
             }
             for (int i = 0; i < str.length(); i++) {
                   String left = str.substring(0, i);
                   String right = str.substring(i+1);
                   String newStr = left + right;
-                  allVariationParentheses(newStr, qtyWrongParenthesesAllowed - 1);
+                  allVariationParentheses(newStr, qtyWrongParenthesesAllowed - 1, result);
             }
       }
 
@@ -91,7 +89,8 @@ public class RemoveInvalidParenthesesTest {
             String[] expected = {"(())()","()()()"};
             System.out.println(str);
             System.out.println("Expected : " + Arrays.toString(expected));
-
+            Set<String> allValidParentheses = getAllValidParentheses(str);
+            System.out.println(allValidParentheses);
             System.out.println();
       }
       /*
@@ -105,7 +104,8 @@ public class RemoveInvalidParenthesesTest {
             String[] expected = {"(a())()","(a)()()"};
             System.out.println(str);
             System.out.println("Expected : " + Arrays.toString(expected));
-
+            Set<String> allValidParentheses = getAllValidParentheses(str);
+            System.out.println(allValidParentheses);
             System.out.println();
       }
 
@@ -114,7 +114,8 @@ public class RemoveInvalidParenthesesTest {
             String[] expected = {""};
             System.out.println(str);
             System.out.println("Expected : " + Arrays.toString(expected));
-
+            Set<String> allValidParentheses = getAllValidParentheses(str);
+            System.out.println(allValidParentheses);
             System.out.println();
       }
 }
