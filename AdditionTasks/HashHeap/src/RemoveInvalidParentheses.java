@@ -27,9 +27,9 @@ public class RemoveInvalidParentheses {
        Output: [""]
        */
       public static void main(String[] args) {
-            test1();
+            //test1();
             test2();
-            test3();
+            //test3();
       }
       /*
                 |
@@ -100,7 +100,7 @@ public class RemoveInvalidParentheses {
             (a)())() -> (a())()
        */
       static void test2() {
-            String str = "(a)())()";
+            String str = ")(a)())()";
             String[] expected = {"(a())()","(a)()()"};
             System.out.println(str);
             System.out.println("Expected : " + Arrays.toString(expected));
@@ -108,9 +108,6 @@ public class RemoveInvalidParentheses {
             System.out.println();
       }
 
-      /*
-
-       */
       static void test3() {
             String str = ")(";
             String[] expected = {""};
