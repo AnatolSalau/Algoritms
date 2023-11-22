@@ -49,8 +49,22 @@ public class MedianTwoHeap {
                   int end = i;
                   int length = end - start + 1;
 
+                  //count max lengths of heaps
+                  int maxLeftSize = 0;
+                  int maxRightSize = 0;
 
-                  if (length >= 2 && length <= k) {
+                  if (k % 2 == 0) {
+                        maxLeftSize = k/2;
+                        maxRightSize = maxLeftSize;
+                  } else {
+                        maxLeftSize = k/2 + 1;
+                        maxRightSize = k/2;
+                  }
+                  //start element
+                  int startElem = numbers[start];
+
+
+                  if (length >= 2 ) {
                         if (length == 2 ) {// initialize heaps with start values
                               int leftElement = numbers[start];
                               int rightElement = numbers[end];
@@ -64,38 +78,34 @@ public class MedianTwoHeap {
                         } else {
                               int leftHeapMax = leftHeap.peek();
                               int rightHeapMin = rightHeap.peek();
-                              System.out.println();
 
                               int newElem = numbers[end];
-                              //balance size of heaps
-                              int maxLeftSize = 0;
-                              int maxRightSize = 0;
 
-                              if (k % 2 == 0) {
-                                    maxLeftSize = k/2;
-                                    maxRightSize = maxLeftSize;
-                              } else {
-                                    maxLeftSize = k/2 + 1;
-                                    maxRightSize = k/2;
-                              }
-                              int startElem = numbers[start];
+                              //add new item and balance heaps
                               if (newElem <= leftHeapMax) {
                                     leftHeap.add(newElem);
-
-                                    if (leftHeap.size() > maxLeftSize) leftHeap.remove(startElem);
                               } else {
                                     rightHeap.add(newElem);
                                     if (rightHeap.size() > maxRightSize) {
                                           Integer minInRightHeap = rightHeap.poll();
                                           leftHeap.add(minInRightHeap);
-                                          if (leftHeap.size() > maxLeftSize) leftHeap.remove(startElem);
                                     }
                               }
                         }
                   }
-                  System.out.println();
 
-                  if (length >= k) start ++;
+                  if (length >= k) {
+                        System.out.println("i : " + i + ", " + Arrays.toString(numbers) + ", k = " + k);
+                        System.out.println("From " + numbers[start] + " to " + numbers[end]);
+                        System.out.println("leftHeap" + leftHeap);
+                        System.out.println("rightHeap" + rightHeap);
+                        System.out.println();
+                        leftHeap.remove(startElem);
+
+                        start ++;
+                  }
+
+
             }
 
             return null;
