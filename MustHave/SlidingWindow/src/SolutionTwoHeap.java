@@ -63,9 +63,9 @@ class SolutionTwoHeap {
       public static void main(String[] args) {
             SolutionTwoHeap solution = new SolutionTwoHeap();
 
-            int[] arr = {1,3,-1,-3,5,3,6,7};
+            int[] arr = {1,2,3,4,2,3,1,4,2};
             int k = 3;
-            double[] expected = {1.00000,-1.00000,-1.00000,3.00000,5.00000,6.00000};
+            double[] expected = {2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000};
             System.out.println("Arr =" + Arrays.toString(arr));
             System.out.println("k =" + k);
             double[] result = solution.medianSlidingWindow(arr, k);
