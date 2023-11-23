@@ -38,6 +38,7 @@ public class MedianTwoHeap {
       public static void main(String[] args) {
             testOne();
       }
+
       static List<Double> getMedians(int[] numbers, int k) {
             List<Double> result = new ArrayList<>();
 
@@ -67,6 +68,7 @@ public class MedianTwoHeap {
                   int leftHeapMax = 0;
                   int rightHeapMin = 0;
 
+                  //initialize heaps and add new elements
                   if (length >= 2 ) {
                         if (length == 2 ) {// initialize heaps with start values
                               int leftElement = numbers[start];
@@ -79,8 +81,14 @@ public class MedianTwoHeap {
                                     rightHeap.add(leftElement);
                               }
                         } else {
-                              leftHeapMax = leftHeap.peek();
-                              rightHeapMin = rightHeap.peek();
+                              if (!leftHeap.isEmpty()) {
+                                    leftHeapMax = leftHeap.peek();
+                              }
+
+                              if (!rightHeap.isEmpty()) {
+                                    rightHeapMin = rightHeap.peek();
+                              }
+
                               int newElem = numbers[end];
 
                               //add new item and balance heaps
@@ -95,7 +103,12 @@ public class MedianTwoHeap {
                               }
                         }
                   }
-                  //remove start element from right heap and move start index forward
+                  // calculate median value;
+
+
+                  //remove start element from right heap
+                  //balance sizes heaps
+                  // and move start index forward
                   if (length >= k) {
                         System.out.println("i : " + i + ", " + Arrays.toString(numbers) + ", k = " + k);
                         for (int j = start; j <= end; j++) {
@@ -106,9 +119,14 @@ public class MedianTwoHeap {
                         System.out.println("rightHeap" + rightHeap);
                         System.out.println("Elem for remove : " + startElem);
 
-                        leftHeapMax = leftHeap.peek();
-                        rightHeapMin = rightHeap.peek();
+                        if (!leftHeap.isEmpty()) {
+                              leftHeapMax = leftHeap.peek();
+                        }
 
+                        if (!rightHeap.isEmpty()) {
+                              rightHeapMin = rightHeap.peek();
+                        }
+                        //remove elements
                         if (startElem <= leftHeapMax) {
                               System.out.println("Remove from leftHeap = " + startElem);
                               System.out.println("leftHeapMax = " + leftHeapMax);
@@ -118,6 +136,18 @@ public class MedianTwoHeap {
                               System.out.println("rightHeapMin = " + rightHeapMin);
                               rightHeap.remove(startElem);
                         }
+                        System.out.println("leftHeap" + leftHeap);
+                        System.out.println("rightHeap" + rightHeap);
+
+                        // balance heaps
+                        while (rightHeap.size() < length / 2) {
+                              rightHeap.add(leftHeap.poll());
+                        }
+
+                        while (leftHeap.size() < length / 2) {
+                              leftHeap.add(rightHeap.poll());
+                        }
+                        System.out.println("Heaps after balance : ");
                         System.out.println("leftHeap" + leftHeap);
                         System.out.println("rightHeap" + rightHeap);
                         System.out.println();
@@ -134,7 +164,7 @@ public class MedianTwoHeap {
       static void testOne() {
             int[] numbers = {1,2,3,4,2,3,1,4,2};
             double[] expected = {2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000};
-            int k = 4;
+            int k = 3;
             System.out.println(Arrays.toString(numbers));
             System.out.println("Expected : " + Arrays.toString(expected));
             List<Double> medians = getMedians(numbers, k);
