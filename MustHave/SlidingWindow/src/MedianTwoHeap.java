@@ -36,7 +36,8 @@ public class MedianTwoHeap {
        */
 
       public static void main(String[] args) {
-            testOne();
+            //testOne();
+            testTwo();
       }
 
       static List<Double> getMedians(int[] numbers, int k) {
@@ -44,7 +45,7 @@ public class MedianTwoHeap {
 
             PriorityQueue<Integer> leftHeap = new PriorityQueue<>(Collections.reverseOrder());//maxHeap
             PriorityQueue<Integer> rightHeap = new PriorityQueue<>();//minHeap
-
+            boolean isInitialized = false;
             int start = 0;
             for (int i = 0; i < numbers.length; i++) {
                   int end = i;
@@ -70,7 +71,7 @@ public class MedianTwoHeap {
 
                   //initialize heaps and add new elements
                   if (length >= 2 ) {
-                        if (length == 2 ) {// initialize heaps with start values
+                        if (isInitialized == false ) {// initialize heaps with start values
                               int leftElement = numbers[start];
                               int rightElement = numbers[end];
                               if (leftElement < rightElement) {
@@ -80,6 +81,7 @@ public class MedianTwoHeap {
                                     leftHeap.add(rightElement);
                                     rightHeap.add(leftElement);
                               }
+                              isInitialized = true;
                         } else {
                               if (!leftHeap.isEmpty()) {
                                     leftHeapMax = leftHeap.peek();
@@ -101,10 +103,17 @@ public class MedianTwoHeap {
                                           leftHeap.add(minInRightHeap);
                                     }
                               }
+
+                              // balance heaps
+                              while (rightHeap.size() < length / 2) {
+                                    rightHeap.add(leftHeap.poll());
+                              }
+
+                              while (leftHeap.size() < length / 2) {
+                                    leftHeap.add(rightHeap.poll());
+                              }
                         }
                   }
-                  // calculate median value;
-
 
                   //remove start element from right heap
                   //balance sizes heaps
@@ -126,6 +135,15 @@ public class MedianTwoHeap {
                         if (!rightHeap.isEmpty()) {
                               rightHeapMin = rightHeap.peek();
                         }
+                        // calculate median value;
+                        if (k % 2 == 0) {//k is even
+                              double median = leftHeapMax + rightHeapMin /2;
+                              result.add(median);
+                        } else {// k is odd
+                              double median = leftHeapMax;
+                              result.add(median);
+                        }
+
                         //remove elements
                         if (startElem <= leftHeapMax) {
                               System.out.println("Remove from leftHeap = " + startElem);
@@ -136,18 +154,7 @@ public class MedianTwoHeap {
                               System.out.println("rightHeapMin = " + rightHeapMin);
                               rightHeap.remove(startElem);
                         }
-                        System.out.println("leftHeap" + leftHeap);
-                        System.out.println("rightHeap" + rightHeap);
-
-                        // balance heaps
-                        while (rightHeap.size() < length / 2) {
-                              rightHeap.add(leftHeap.poll());
-                        }
-
-                        while (leftHeap.size() < length / 2) {
-                              leftHeap.add(rightHeap.poll());
-                        }
-                        System.out.println("Heaps after balance : ");
+                        System.out.println("heaps after remove : ");
                         System.out.println("leftHeap" + leftHeap);
                         System.out.println("rightHeap" + rightHeap);
                         System.out.println();
@@ -158,7 +165,7 @@ public class MedianTwoHeap {
 
             }
 
-            return null;
+            return result;
 
       }
       static void testOne() {
@@ -166,8 +173,18 @@ public class MedianTwoHeap {
             double[] expected = {2.00000,3.00000,3.00000,3.00000,2.00000,3.00000,2.00000};
             int k = 3;
             System.out.println(Arrays.toString(numbers));
-            System.out.println("Expected : " + Arrays.toString(expected));
             List<Double> medians = getMedians(numbers, k);
-            System.out.println("Result : " + medians);
+            System.out.println("Expected : " + Arrays.toString(expected));
+            System.out.println("Result   : " + medians);
+      }
+
+      static void testTwo() {
+            int[] numbers = {1,3,-1,-3,5,3,6,7};
+            double[] expected = {1.00000,-1.00000,-1.00000,3.00000,5.00000,6.00000};
+            int k = 3;
+            System.out.println(Arrays.toString(numbers));
+            List<Double> medians = getMedians(numbers, k);
+            System.out.println("Expected : " + Arrays.toString(expected));
+            System.out.println("Result   : " + medians);
       }
 }
