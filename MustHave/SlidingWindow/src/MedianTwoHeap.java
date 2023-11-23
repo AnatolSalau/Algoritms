@@ -63,6 +63,9 @@ public class MedianTwoHeap {
                   //start element
                   int startElem = numbers[start];
 
+                  // max and mim elements in heaps
+                  int leftHeapMax = 0;
+                  int rightHeapMin = 0;
 
                   if (length >= 2 ) {
                         if (length == 2 ) {// initialize heaps with start values
@@ -76,9 +79,8 @@ public class MedianTwoHeap {
                                     rightHeap.add(leftElement);
                               }
                         } else {
-                              int leftHeapMax = leftHeap.peek();
-                              int rightHeapMin = rightHeap.peek();
-
+                              leftHeapMax = leftHeap.peek();
+                              rightHeapMin = rightHeap.peek();
                               int newElem = numbers[end];
 
                               //add new item and balance heaps
@@ -93,14 +95,32 @@ public class MedianTwoHeap {
                               }
                         }
                   }
-
+                  //remove start element from right heap and move start index forward
                   if (length >= k) {
                         System.out.println("i : " + i + ", " + Arrays.toString(numbers) + ", k = " + k);
-                        System.out.println("From " + numbers[start] + " to " + numbers[end]);
+                        for (int j = start; j <= end; j++) {
+                              System.out.print(numbers[j] + " ");
+                        }
+                        System.out.println();
+                        System.out.println("leftHeap" + leftHeap);
+                        System.out.println("rightHeap" + rightHeap);
+                        System.out.println("Elem for remove : " + startElem);
+
+                        leftHeapMax = leftHeap.peek();
+                        rightHeapMin = rightHeap.peek();
+
+                        if (startElem <= leftHeapMax) {
+                              System.out.println("Remove from leftHeap = " + startElem);
+                              System.out.println("leftHeapMax = " + leftHeapMax);
+                              leftHeap.remove(startElem);
+                        } else {
+                              System.out.println("Remove from rightHeap = " + startElem);
+                              System.out.println("rightHeapMin = " + rightHeapMin);
+                              rightHeap.remove(startElem);
+                        }
                         System.out.println("leftHeap" + leftHeap);
                         System.out.println("rightHeap" + rightHeap);
                         System.out.println();
-                        leftHeap.remove(startElem);
 
                         start ++;
                   }
