@@ -21,31 +21,29 @@ public class BinarySearch {
       public static void main(String[] args) {
             test1();
       }
-      int getIndex(int[] nums, int target, int startIndex, int endIndex) {
-            if (endIndex >= startIndex) {
-                  //find middle index
-                  int middleIndex = startIndex + (endIndex - startIndex) / 2;
 
-                  //check middle value to equality with element to find
-                  if (nums[middleIndex] == target) {
-                        return middleIndex;
-                  }
+      public int getIndexBinary(int[] nums, int target, int leftIndex, int rightIndex) {
+            if (leftIndex <= rightIndex) {
+                  int leftValue = nums[leftIndex];
+                  int rightValue = nums[rightIndex];
+                  int middleIndex = (leftIndex + rightIndex) / 2;
+                  int middleValue = nums[middleIndex];
+                  if (target == middleValue) return  middleIndex;
 
-                  //do recursive
-                  if(nums[middleIndex] > target) {
-                        return getIndex(nums, target, startIndex,middleIndex - 1);
+                  if (target < middleValue) {
+                        getIndexBinary(nums,target,leftIndex,middleIndex - 1);
                   } else {
-                        return getIndex(nums, target, middleIndex + 1,endIndex);
+                        getIndexBinary(nums,target,middleIndex + 1,rightIndex);
                   }
             }
-            return - 1;
+            return -1;
       }
       static void test1() {
-            int[] nums = {-1,0,3,5,9,12};
+            int[] nums = {-1,0,3,5,9,12,20};
             int target = 9;
             int expected = 4;
             BinarySearch binarySearch = new BinarySearch();
-            int result = binarySearch.getIndex(nums, target, 0, nums.length);
+            int result = binarySearch.getIndexBinary(nums, target, 0,nums.length - 1);
             System.out.println(result);
       }
 
