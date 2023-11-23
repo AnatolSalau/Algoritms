@@ -123,10 +123,6 @@ public class MedianTwoHeap {
                         for (int j = start; j <= end; j++) {
                               System.out.print(numbers[j] + " ");
                         }
-                        System.out.println();
-                        System.out.println("leftHeap" + leftHeap);
-                        System.out.println("rightHeap" + rightHeap);
-                        System.out.println("Elem for remove : " + startElem);
 
                         if (!leftHeap.isEmpty()) {
                               leftHeapMax = leftHeap.peek();
@@ -146,27 +142,14 @@ public class MedianTwoHeap {
 
                         //remove elements
                         if (startElem <= leftHeapMax) {
-                              System.out.println("Remove from leftHeap = " + startElem);
-                              System.out.println("leftHeapMax = " + leftHeapMax);
                               leftHeap.remove(startElem);
                         } else {
-                              System.out.println("Remove from rightHeap = " + startElem);
-                              System.out.println("rightHeapMin = " + rightHeapMin);
                               rightHeap.remove(startElem);
                         }
-                        System.out.println("heaps after remove : ");
-                        System.out.println("leftHeap" + leftHeap);
-                        System.out.println("rightHeap" + rightHeap);
-                        System.out.println();
-
                         start ++;
                   }
-
-
             }
-
             return result;
-
       }
       static void testOne() {
             int[] numbers = {1,2,3,4,2,3,1,4,2};
