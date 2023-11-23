@@ -21,19 +21,19 @@ public class BinarySearch {
       public static void main(String[] args) {
             test1();
       }
-
+      //
       public int getIndexBinary(int[] nums, int target, int leftIndex, int rightIndex) {
             if (leftIndex <= rightIndex) {
                   int leftValue = nums[leftIndex];
                   int rightValue = nums[rightIndex];
-                  int middleIndex = (leftIndex + rightIndex) / 2;
+                  int middleIndex = leftIndex + rightIndex / 2;
                   int middleValue = nums[middleIndex];
                   if (target == middleValue) return  middleIndex;
 
                   if (target < middleValue) {
-                        getIndexBinary(nums,target,leftIndex,middleIndex - 1);
+                        return getIndexBinary(nums,target,leftIndex,middleIndex - 1);
                   } else {
-                        getIndexBinary(nums,target,middleIndex + 1,rightIndex);
+                        return getIndexBinary(nums,target,middleIndex + 1,rightIndex);
                   }
             }
             return -1;
