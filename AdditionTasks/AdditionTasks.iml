@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/DeepWithSearch/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/BinarySearch/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HashHeap/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Trees/src" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
