@@ -1,5 +1,4 @@
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class PathSum2 {
       public static class TreeNode {
@@ -49,12 +48,12 @@ public class PathSum2 {
       }
       public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
             List<List<Integer>> result = new LinkedList<>();
-            List<Integer> pathSum = new LinkedList<>();
-            getPath(root,0, pathSum, targetSum, result);
+            Set<Integer> path = new HashSet<>();
+            getPath(root,0, path, targetSum, result);
             return result;
       }
 
-      List<Integer> getPath(TreeNode node, int previousVal, List<Integer> pathValues, int target, List<List<Integer>> result) {
+      Set<Integer> getPath(TreeNode node, int previousVal, Set<Integer> pathValues, int target, List<List<Integer>> result) {
             int val = node.val;
 
             pathValues.add(val);
@@ -70,7 +69,8 @@ public class PathSum2 {
 
             if (node.left == null && node.right == null) {
                   if (currSum == target) {
-                        result.add(pathValues);
+                        result.add(pathValues.stream().toList());
+                        pathValues.remove(val);
                         return pathValues;
                   }
                   pathValues.remove(val);
