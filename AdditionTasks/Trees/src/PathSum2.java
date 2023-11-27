@@ -46,38 +46,40 @@ public class PathSum2 {
       public static void main(String[] args) {
             testOne();
       }
+
       public List<List<Integer>> pathSum(TreeNode root, int targetSum) {
             List<List<Integer>> result = new LinkedList<>();
-            Set<Integer> path = new HashSet<>();
+            Stack<Integer> path = new Stack<>();
             getPath(root,0, path, targetSum, result);
             return result;
       }
 
-      Set<Integer> getPath(TreeNode node, int previousVal, Set<Integer> pathValues, int target, List<List<Integer>> result) {
+      void getPath(TreeNode node, int previousVal, Stack<Integer> path, int target, List<List<Integer>> result) {
             int val = node.val;
 
-            pathValues.add(val);
+            path.add(val);
 
             int currSum = val + previousVal;
 
             if (node.left != null) {
-                  getPath(node.left, currSum, pathValues,target, result);
+                  getPath(node.left, currSum, path,target, result);
             }
             if (node.right != null) {
-                  getPath(node.right, currSum, pathValues,target, result);
+                  getPath(node.right, currSum, path,target, result);
             }
 
             if (node.left == null && node.right == null) {
                   if (currSum == target) {
-                        result.add(pathValues.stream().toList());
-                        pathValues.remove(val);
-                        return pathValues;
+                        List<Integer> rightPath = new ArrayList<>(path);
+                        result.add(rightPath);
+                        int num = path.peek();
+                        System.out.println();
+
                   }
-                  pathValues.remove(val);
-                  return pathValues;
             }
-            pathValues.remove(val);
-            return pathValues;
+            if (!path.isEmpty()) {
+                  path.pop();
+            }
       }
       static void testOne() {
             TreeNode root1 = new TreeNode( 1, null, null);
