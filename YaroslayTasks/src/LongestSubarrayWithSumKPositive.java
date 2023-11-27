@@ -19,6 +19,8 @@ public class LongestSubarrayWithSumKPositive {
             int[] nums = {1,2,1,0,1};
             int target = 4;
             int expectedLength = 4;
+            LinkedList<Integer> longestSubArr = getLongestSubArr(nums, target);
+            System.out.println(longestSubArr);
       }
       /*
             2 3 5   k=5
@@ -58,10 +60,27 @@ public class LongestSubarrayWithSumKPositive {
             5:  1  2  1  0  1 -> sum 4, length 4 -> 4 add to answer
 
        */
-      LinkedList<Integer> getLongestSubArr(int[] nums, int target) {
+      static LinkedList<Integer> getLongestSubArr(int[] nums, int target) {
             LinkedList<Integer> result = new LinkedList<>();
 
-
+            int s = 0;
+            int e = 0;
+            int sum = nums[0];
+            int maxLength = 1;
+            while (s < nums.length) {
+                  if (sum <= target && e < nums.length-1) {//if sum less or equal target move end to forward and plus to summ
+                        e++;
+                        sum += nums[e];
+                  } else {
+                        sum -= nums[s];
+                        s++;
+                  }
+                  int currLength = e - s + 1;
+                  if (sum == target && currLength > maxLength) {
+                        result.add(s);
+                        result.add(e);
+                  }
+            }
 
             return result;
       }
