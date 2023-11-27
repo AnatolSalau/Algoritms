@@ -55,6 +55,8 @@ public class PathSum2 {
       }
 
       void getPath(TreeNode node, int previousVal, Stack<Integer> path, int target, List<List<Integer>> result) {
+            if (node == null) return;
+
             int val = node.val;
 
             path.add(val);
@@ -72,11 +74,9 @@ public class PathSum2 {
                   if (currSum == target) {
                         List<Integer> rightPath = new ArrayList<>(path);
                         result.add(rightPath);
-                        int num = path.peek();
-                        System.out.println();
-
                   }
             }
+            //remove last added element on the reverse of the recursion
             if (!path.isEmpty()) {
                   path.pop();
             }
