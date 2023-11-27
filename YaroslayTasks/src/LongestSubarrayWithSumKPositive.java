@@ -8,7 +8,9 @@ public class LongestSubarrayWithSumKPositive {
        A subarray is a contiguous non-empty sequence of elements within an array.
        */
       public static void main(String[] args) {
-            testOne();
+
+            //testOne();
+            testTwo();
       }
       /*
             1, 2, 1, 0, 1
@@ -42,6 +44,8 @@ public class LongestSubarrayWithSumKPositive {
             int[] nums = {2, 3, 5};
             int target = 5;
             int expectedLength = 2;
+            LinkedList<Integer> longestSubArr = getLongestSubArr(nums, target);
+            System.out.println(longestSubArr);
       }
       /*
             two pointer realization
@@ -66,7 +70,10 @@ public class LongestSubarrayWithSumKPositive {
             int s = 0;
             int e = 0;
             int sum = nums[0];
-            int maxLength = 1;
+
+            int maxLength = 0;
+            int answerStart = 0;
+            int answerEnd = 0;
             while (s < nums.length) {
                   if (sum <= target && e < nums.length-1) {//if sum less or equal target move end to forward and plus to summ
                         e++;
@@ -76,12 +83,14 @@ public class LongestSubarrayWithSumKPositive {
                         s++;
                   }
                   int currLength = e - s + 1;
-                  if (sum == target && currLength > maxLength) {
-                        result.add(s);
-                        result.add(e);
+                  if (sum == target && currLength >= maxLength) {
+                        answerStart = s;
+                        answerEnd = e;
+                        maxLength = currLength;
                   }
             }
-
+            result.add(answerStart);
+            result.add(answerEnd);
             return result;
       }
 }
