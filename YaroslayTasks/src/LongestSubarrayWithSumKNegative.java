@@ -10,26 +10,115 @@ public class LongestSubarrayWithSumKNegative {
 
        A subarray is a contiguous non-empty sequence of elements within an array.
        */
-      public static void main(String[] args) {
-            testOne();
-      }
-      /*                        *
-            0  1  2  3   4   5  6  7
-            4, 1,-5, 8, -14, 2, 4, 3     k= - 5
-
-
-            4 -> 0
-            5 -> 1
-            0 -> 2
-            8 -> 3
-            -6 ->4
-            -4 -> 5
-            0 -> 6
-            3 -> 3
-
+      /**
+       Дан массив целых чисел и число target.
+       Нужно найти непустой подотрезок (непрерывную подпоследовательность) с
+       заданной суммой target, либо сказать, что это невозможно.
+       Если такие отрезки есть, то надо вернуть любой отрезок (как индексы концов,
+       включительно).
+       Если нет, то (-1,-1)
        */
-      List<Integer> getLongestSubArray(int[] array, int k) {
+      public static void main(String[] args) {
+
+            //testOne();
+            //testTwo();
+      }
+      /*    i:    *
+                  0  1  2  3    4  5  6  7
+                  4, 1,-5, 8, -14, 2, 4, 3    k = -5, expected result = -5, 8, -14, 2, 4
+            sum:  4
+            i:    *
+                  0  1  2  3    4  5  6  7                                          4 -> 0
+                  4, 1,-5, 8, -14, 2, 4, 3      4 -(- 5) = 9
+            sum:  4
+            i:       *
+                  0  1  2  3    4  5  6  7                                          4 -> 0
+                  4, 1,-5, 8, -14, 2, 4, 3      5 -(- 5) = 10                       5 -> 1
+            sum:     5
+            i:          *
+                  0  1  2  3    4  5  6  7                                          4 -> 0
+                  4, 1,-5, 8, -14, 2, 4, 3      0 -(- 5) = 5                        5 -> 1      5 is exist. so 2 - 1 = 1 [2,2]
+            sum:        0                                                           0 -> 2
+            i:             *
+                  0  1  2  3    4  5  6  7                                          4 -> 0
+                  4, 1,-5, 8, -14, 2, 4, 3      8 -(- 5) = 13                       5 -> 1
+            sum:           8                                                        0 -> 2
+                                                                                    8 -> 3
+            i:                  *
+                  0  1  2  3    4  5  6  7                                          4 -> 0
+                  4, 1,-5, 8, -14, 2, 4, 3      -6 -(- 5) = -1                      5 -> 1
+            sum:               -6                                                   0 -> 2
+                                                                                    8 -> 3
+                                                                                   -6 -> 4
+            i:                     *
+                  0  1  2  3    4  5  6  7                                          4 -> 0
+                  4, 1,-5, 8, -14, 2, 4, 3     -4 -(- 5) = 1                        5 -> 1
+            sum:                  -4                                                0 -> 2
+                                                                                    8 -> 3
+                                                                                   -6 -> 4
+                                                                                   -4 -> 5
+            i:                        *
+                  0  1  2  3    4  5  6  7                                          4 -> 0
+                  4, 1,-5, 8, -14, 2, 4, 3     0 -(- 5) = 5                         5 -> 1      5 is exist so 6 - 1 = 5 [2,6]
+            sum:                      0                                             0 -> 6
+                                                                                    8 -> 3
+                                                                                   -6 -> 4
+                                                                                   -4 -> 5
+            i:                           *
+                  0  1  2  3    4  5  6  7                                          4 -> 0
+                  4, 1,-5, 8, -14, 2, 4, 3     3 -(- 5) = 8                         5 -> 1
+            sum:                         3                                          0 -> 6
+                                                                                    8 -> 3      8 is exist so 7 - 3 = 4 [4,7] (-14, 2, 4, 3)
+                                                                                   -6 -> 4
+                                                                                   -4 -> 5
+                                                                                    3 -> 7
+       */
+      static List<Integer> getLongestSubArray(int[] array, int k) {
             List<Integer> result = new LinkedList<>();
+
+            HashMap<Integer, Integer> prefixMap = new HashMap<>();
+
+            int startInd = -1;
+            int endInd = -1;
+
+            int maxLen = 0;
+            int sum = 0;
+
+            for (int i = 0; i < array.length; i++) {
+                  int currLength = i + 1;
+                  int currElem = array[i];
+                  sum = sum + currElem;
+                  int remainder = sum - k;
+
+                  if (sum == k) {   //if this sum equal k -> save answer
+                        if (currLength > maxLen) {
+                              maxLen = currLength;
+                              startInd = 0;
+                              endInd = i;
+                        }
+                        continue;
+                  }
+
+                  if (!prefixMap.containsKey(remainder)) {
+                        prefixMap.put(sum,i);
+                  }
+
+                  if (prefixMap.containsKey(remainder)) {
+                        int prefixLastIndex = prefixMap.get(remainder);
+                        int prefixlength = prefixLastIndex +1;
+                        int nextPartLength = i - prefixlength + 1;
+
+                        if (nextPartLength > maxLen) {
+                              maxLen = nextPartLength;
+                              startInd = prefixLastIndex + 1;
+                              endInd = i;
+                        }
+                        prefixMap.put(sum,i);
+                  }
+            }
+            for (int i = startInd; i <= endInd ; i++) {
+                  result.add(array[i]);
+            }
             return result;
       }
       static void testOne() {
@@ -39,42 +128,15 @@ public class LongestSubarrayWithSumKNegative {
            int[] expectedResult1 = {-5, 8, -14, 2, 4};
            int expectedLength2 = 4;
            int[] expectedResult2 = {-14, 2, 4, 3};
-            int result = lenOfLongSubarr(nums, k);
-            System.out.println(result);
+           List<Integer> result = getLongestSubArray(nums, k);
+           System.out.println(result);
       }
 
-      static int lenOfLongSubarr(int[] arr, int k)
-      {     int n = arr.length;
-            // HashMap to store (sum, index) tuples
-            HashMap<Integer, Integer> map = new HashMap<>();
-            int sum = 0, maxLen = 0;
-
-            // traverse the given array
-            for (int i = 0; i < n; i++) {
-
-                  // accumulate sum
-                  sum += arr[i];
-
-                  // when subarray starts from index '0'
-                  if (sum == k)
-                        maxLen = i + 1;
-
-                  // make an entry for 'sum' if it is
-                  // not present in 'map'
-                  if (!map.containsKey(sum)) {
-                        map.put(sum, i);
-                  }
-
-                  // check if 'sum-k' is present in 'map'
-                  // or not
-                  if (map.containsKey(sum - k)) {
-
-                        // update maxLength
-                        if (maxLen < (i - map.get(sum - k)))
-                              maxLen = i - map.get(sum - k);
-                  }
-            }
-
-            return maxLen;
+      static void testTwo() {
+            int[] nums = {1,2,1,0,1};
+            int k = 4;
+            int expectedLength1 = 4;
+            List<Integer> result = getLongestSubArray(nums, k);
+            System.out.println(result);
       }
 }
