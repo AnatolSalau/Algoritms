@@ -53,7 +53,7 @@ public class Task3 {
       static TreeNode[] getTwoEquivalentSubTree(TreeNode root) {
             HashMap<Set<String>, Integer> setQuantityMap = new HashMap<>();
             System.out.println(setQuantityMap);
-            fillSetQuantityMap(root.right, setQuantityMap);
+            fillSetQuantityMap(root.left, setQuantityMap);
             System.out.println(setQuantityMap);
             return null;
       }
