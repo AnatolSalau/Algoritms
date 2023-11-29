@@ -12,19 +12,19 @@ import java.util.*;
  */
 public class Task3 {
       public static class TreeNode {
-            String name;
+            String letter;
             TreeNode left;
             TreeNode right;
 
             TreeNode() {
             }
 
-            TreeNode(String name) {
-                  this.name = name;
+            TreeNode(String letter) {
+                  this.letter = letter;
             }
 
-            TreeNode(String name, TreeNode left, TreeNode right) {
-                  this.name = name;
+            TreeNode(String letter, TreeNode left, TreeNode right) {
+                  this.letter = letter;
                   this.left = left;
                   this.right = right;
             }
@@ -49,45 +49,57 @@ public class Task3 {
             getTwoEquivalentSubTree(root);
       }
 
+      /*
+                    A
+                /        \
+               B          B
+              / \      /     \
+             C   D    C       D
+                     /  \    / \
+                    C    D  C   D
+        */
 
       static TreeNode[] getTwoEquivalentSubTree(TreeNode root) {
             HashMap<Set<String>, Integer> setQuantityMap = new HashMap<>();
             System.out.println(setQuantityMap);
-            fillSetQuantityMap(root.left, setQuantityMap);
+            fillSetQuantityMap(root.right,root.right, setQuantityMap);
             System.out.println(setQuantityMap);
             return null;
       }
 
-      static void fillSetQuantityMap(TreeNode node, HashMap<Set<String>, Integer> setQuantityMap) {
-            String name = node.name;
-            Set<String> allNames = new HashSet<>();
-            allNames.add(name);
+      static void fillSetQuantityMap(TreeNode left, TreeNode right, HashMap<Set<String>, Integer> setQuantityMap) {
+            String letterLeft = left.letter;
+            Set<String> allLettersLeft = new HashSet<>();
+            allLettersLeft.add(letterLeft);
+            int count = 1;
 
             Queue<TreeNode> queue = new LinkedList<>();
 
-            if (node.left != null) {
-                  queue.add(node.left);
+            if (left.left != null) {
+                  queue.add(left.left);
             }
-            if (node.right != null) {
-                  queue.add(node.right);
+            if (left.right != null) {
+                  queue.add(left.right);
             }
-
+            //collect all letters from left map
             while (!queue.isEmpty()) {
                   TreeNode poll = queue.poll();
-                  allNames.add(poll.name);
+                  allLettersLeft.add(poll.letter);
                   if (poll.left != null) {
                         queue.add(poll.left);
+                        count++;
                   }
                   if (poll.right != null) {
                         queue.add(poll.right);
+                        count++;
                   }
             }
-            setQuantityMap.put(allNames, 0);
-            if (node.left != null) {
-                  fillSetQuantityMap(node.left, setQuantityMap);
+            setQuantityMap.put(allLettersLeft, count);
+            if (left.left != null) {
+                  fillSetQuantityMap(left.left,right.right, setQuantityMap);
             }
-            if (node.right != null) {
-                  fillSetQuantityMap(node.right, setQuantityMap);
+            if (left.right != null) {
+                  fillSetQuantityMap(left.right,right.right, setQuantityMap);
             }
       }
 }
