@@ -23,7 +23,7 @@ public class QuickSort {
       }
 
       private static int partition(int[] array, int startIndex, int endIndex) {
-            int pivot = array[endIndex];
+            int pivot = array[startIndex + (endIndex - startIndex) / 2];
             int i = startIndex - 1;
 
             for (int j = startIndex; j <= endIndex - 1; j++) {

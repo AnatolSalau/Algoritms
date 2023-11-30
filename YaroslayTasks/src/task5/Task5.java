@@ -43,7 +43,7 @@ public class Task5 {
                                                        l    r        1
        */
       static int getQtyIntersections(int[][] numbers) {
-            bubbleSortMultipleArr(numbers);
+            quickSortMultipleArr(numbers, 0, numbers.length - 1);
             int countIntersections = 0;
             for (int i = 1; i < numbers.length; i++) {
                   int lastDayLeftRange = numbers[i - 1][1];
@@ -67,5 +67,41 @@ public class Task5 {
                         }
                   }
             }
+      }
+
+      static void quickSortMultipleArr(int[][] numbers, int startIndex, int endIndex) {
+            if(startIndex >= endIndex) return;
+
+            int pivotIndex = partition(numbers, startIndex, endIndex);
+
+            quickSortMultipleArr(numbers,startIndex,pivotIndex - 1);
+            quickSortMultipleArr(numbers,pivotIndex +1,endIndex);
+      }
+
+      static int partition(int[][] numbers, int startIndex, int endIndex) {
+            int i = startIndex - 1;
+
+            int pivot = numbers[endIndex][0];
+
+            for (int j = startIndex; j <= endIndex - 1; j++) {
+
+                  if (numbers[j][0] < pivot) {
+                        i++;
+                        int temp0 = numbers[i][0];
+                        int temp1 = numbers[i][1];
+                        numbers[i][0] = numbers[j][0];
+                        numbers[i][1] = numbers[j][1];
+                        numbers[j][0] = temp0;
+                        numbers[j][1] = temp1;
+                  }
+            }
+            i ++;
+            int temp0 = numbers[endIndex][0];
+            int temp1 = numbers[endIndex][1];
+            numbers[endIndex][0] = numbers[i][0];
+            numbers[endIndex][1] = numbers[i][1];
+            numbers[i][0] = temp0;
+            numbers[i][1] = temp1;
+            return i;
       }
 }
