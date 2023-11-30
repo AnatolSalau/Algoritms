@@ -1,4 +1,4 @@
-package task8;
+package task7.task8;
 
 import java.util.*;
 
@@ -13,31 +13,6 @@ public class Task8 {
        Example 2:
        Argument: ['one', 'one', 'one', 'one', 'one', 'two', 'three']
        Result: [ 'one', 'two', 'three', 'one', 'one', 'one', 'one' ]
-       */
-      /*
-            const distributeEvenly = (array) => {
-              const map = new Map();
-              const res = [];
-
-              for(x of array) {
-                if(!map.has(x)) {
-                  map.set(x, 0);
-                }
-                map.set(x, map.get(x) + 1)
-              }
-
-              while(map.size > 0) {
-                for(let [k, v] of map) {
-                  res.push(k);
-                  map.set(k, v - 1);
-                  if(v - 1 == 0){
-                    map.delete(k);
-                  }
-                }
-              }
-
-              return res;
-            };
        */
       public static void main(String[] args) {
             test1();
