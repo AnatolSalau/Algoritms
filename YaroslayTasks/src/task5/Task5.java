@@ -10,6 +10,7 @@ public class Task5 {
        пересечением, а считается пересечением 1-5 и допустим 2-18.
 
        */
+
       public static void main(String[] args) {
             testOne();
             testTwo();

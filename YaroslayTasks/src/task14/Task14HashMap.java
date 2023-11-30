@@ -2,7 +2,7 @@ package task14;
 
 import java.util.*;
 
-public class Task14 {
+public class Task14HashMap {
       /**
              Given two integer arrays nums1 and nums2, return an array of their intersection.
              Each element in the result must appear as many times as it shows in both arrays
@@ -65,21 +65,21 @@ public class Task14 {
       }
 
       static void test1() {
-            Task14 task14 = new Task14();
+            Task14HashMap task14HashMap = new Task14HashMap();
 
             int[]nums1 = {1,2,2,1};
             int[]nums2 = {2,2};
             String expectedResult = "[2,2]";
-            System.out.println(Arrays.toString(task14.intersect(nums1,nums2 )));
+            System.out.println(Arrays.toString(task14HashMap.intersect(nums1,nums2 )));
             System.out.println("Exp : " + expectedResult);
       }
 
       static void test2() {
-            Task14 task14 = new Task14();
+            Task14HashMap task14HashMap = new Task14HashMap();
             int[]nums1 = {4,9,5};
             int[]nums2 = {9,4,9,8,4};
             String expectedResult = "[4,9]";
-            System.out.println(Arrays.toString(task14.intersect(nums1,nums2 )));
+            System.out.println(Arrays.toString(task14HashMap.intersect(nums1,nums2 )));
             System.out.println("Exp : " + expectedResult);
       }
 }
