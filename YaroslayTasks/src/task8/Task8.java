@@ -1,4 +1,4 @@
-package task7.task8;
+package task8;
 
 import java.util.*;
 
