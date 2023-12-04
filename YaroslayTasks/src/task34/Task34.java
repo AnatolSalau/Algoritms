@@ -18,13 +18,16 @@ public class Task34 {
        * Output: [4,9,9,49,121]
        */
       public static void main(String[] args) {
+            System.out.println("Task34");
             int[] nums1 = {-4, -1, 0, 3, 10};
+            System.out.println(Arrays.toString(nums1));
             System.out.println("Right answer : ");
             System.out.println("[0, 1, 9, 16, 100]");
             int[] res1 = sortedSquares(nums1);
             System.out.println(Arrays.toString(res1));
             System.out.println();
             int[] nums2 = {-3,2,3,11};
+            System.out.println(Arrays.toString(nums2));
             System.out.println("Right answer : ");
             System.out.println("[4,9,9,121]");
             int[] res2 = sortedSquares(nums2);
