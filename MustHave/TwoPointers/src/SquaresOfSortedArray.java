@@ -73,7 +73,7 @@ public class SquaresOfSortedArray {
                  lo hi
      i = 1:  lo= -3,       hi= 3
             [-7, -3, 3, 11]    [0, 9, 49, 121]
-                 lohi
+                 lo  hi
      i = 0:  lo= -3,       hi= -3
             [-7, -3, 3, 11]    [9, 9, 49, 121]
                  lohi
@@ -83,12 +83,15 @@ public class SquaresOfSortedArray {
             int[] res = new int[arr.length];
             int left = 0;
             int right = arr.length - 1;
-            for (int i = 0; i < arr.length ; i--) {
-                  if (Math.abs(arr[left]) <= Math.abs(arr[right])) {
+            for (int i = arr.length - 1; i >= 0 ; i--) {
+                  if (Math.abs(arr[left]) > arr[right])
+                  {
                         res[i] = arr[left] * arr[left];
-                        left ++;
-                  } else {
-                        res[i] = arr[right] * arr [right];
+                        left++;
+                  }
+                  else
+                  {
+                        res[i] = arr[right] * arr[right];
                         right--;
                   }
             }
