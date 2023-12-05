@@ -12,8 +12,8 @@ public class Task5 {
        */
 
       public static void main(String[] args) {
-/*            testOne();
-            testTwo();*/
+            testOne();
+            testTwo();
             testThree();
       }
 
@@ -57,10 +57,12 @@ public class Task5 {
       static int getQtyIntersections(int[][] numbers) {
             quickSortMultipleArr(numbers, 0, numbers.length - 1);
             int countIntersections = 0;
+            int maxDayLeft = 0;
             for (int i = 1; i < numbers.length; i++) {
                   int lastDayLeftRange = numbers[i - 1][1];
                   int firstDayRightRange = numbers[i][0];
-                  if (lastDayLeftRange > firstDayRightRange) countIntersections++;
+                  maxDayLeft = Math.max(maxDayLeft, lastDayLeftRange);
+                  if (maxDayLeft > firstDayRightRange) countIntersections++;
             }
 
             return countIntersections;
