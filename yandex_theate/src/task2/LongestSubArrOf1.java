@@ -26,7 +26,11 @@ public class LongestSubArrOf1 {
        Explanation: You must delete one element.
        */
       public static void main(String[] args) {
-
+            test1();
+            test2();
+            test3();
+            test4();
+            test5();
       }
       /*            4
             0,1,1,1,0,1,1,0,1
@@ -93,10 +97,72 @@ public class LongestSubArrOf1 {
       private static void test1() {
             int[] nums = {0,1,1,1,0,1,1,0,1};
             System.out.println("Expected result = 5");
+            System.out.println(gemLongestSubarray(nums));
+
+      }
+      private static void test2() {
+            int[] nums = {1,1,0,1};
+            System.out.println("Expected result = 3");
+            System.out.println(gemLongestSubarray(nums));
 
       }
 
-      private int gemLongestSubarray() {
-            return 0;
+      private static void test3() {
+            int[] nums = {1,1,1};
+            System.out.println("Expected result = 2");
+            System.out.println(gemLongestSubarray(nums));
+
+      }
+
+      private static void test4() {
+            int[] nums = {0,0,0};
+            System.out.println("Expected result = 0");
+            System.out.println(gemLongestSubarray(nums));
+
+      }
+
+      private static void test5() {
+            int[] nums = {1,1,1,0};
+            System.out.println("Expected result = 3");
+            System.out.println(gemLongestSubarray(nums));
+
+      }
+
+      private static int gemLongestSubarray(int[] arr) {
+            int oneMaxCount = 0;
+            int zeroCount = 0;
+            int l = 0;
+            for (int r = 0; r < arr.length; r++) {
+
+                  if (l >= arr.length) break;
+
+                  int right = arr[r];
+                  int left = arr[l];
+
+
+                  if (right == 0) { // if right == 0 increase zero count
+                        zeroCount ++;
+                  }
+
+                  if (zeroCount > 1) { //move left index when zeroCount more than 1
+                        if (left == 0) { // move only one step to right
+                              l++;
+                              zeroCount --;
+                        } else {
+                              l++;
+                              for (int i = l; i < arr.length; i++) {//move to right while will find 0
+                                    if (arr[i] == 0) { // if find zero increase l to next element
+                                          l = i + 1;
+                                          zeroCount --;
+                                          break;
+                                    }
+                              }
+                        }
+                  }
+                  int currCount = r - l + 1;
+                  oneMaxCount = Math.max(oneMaxCount, currCount);
+            }
+
+            return oneMaxCount-1;
       }
 }
