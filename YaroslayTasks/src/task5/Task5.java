@@ -12,8 +12,9 @@ public class Task5 {
        */
 
       public static void main(String[] args) {
-            testOne();
-            testTwo();
+/*            testOne();
+            testTwo();*/
+            testThree();
       }
 
       static void testOne() {
@@ -29,6 +30,16 @@ public class Task5 {
       static void testTwo() {
             int[][] numbers = {{1, 5}, {2,18}};
             int expectedResult = 1;
+            System.out.println(Arrays.deepToString(numbers));
+            int qtyIntersections = getQtyIntersections(numbers);
+            System.out.println(Arrays.deepToString(numbers));
+            System.out.println("Result : " + qtyIntersections);
+            System.out.println("ExpectedResult : " + expectedResult);
+      }
+
+      static void testThree() {
+            int[][] numbers = {{1, 2}, {1, 3}, {2, 4}, {2, 3},};
+            int expectedResult = 3;
             System.out.println(Arrays.deepToString(numbers));
             int qtyIntersections = getQtyIntersections(numbers);
             System.out.println(Arrays.deepToString(numbers));
