@@ -14,7 +14,7 @@ public class LongestSubstringByKUniqueChar {
 
       public static void main(String[] args) {
             testOne();
-            //testTwo();
+            testTwo();
       }
 
       static int geMaxLengthSubstringWithKDistinctChar(String s, int k) {
@@ -41,10 +41,14 @@ public class LongestSubstringByKUniqueChar {
                   while (charFreqMap.size() > k) {
                         Integer count = charFreqMap.get(left);
                         count --; // decrease count
-                        l++;//increase left pointer
+                        charFreqMap.put(left,count);
+
                         if (count == 0) {
                               charFreqMap.remove(left); // remove if count == 0
                         }
+
+                        l += 1;//increase left pointer
+                        left = charArr[l]; // change left number when we increase pointer
                   }
 
                   int currWindowsLength = r - l + 1;
