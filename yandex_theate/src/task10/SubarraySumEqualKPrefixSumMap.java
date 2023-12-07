@@ -50,8 +50,8 @@ public class SubarraySumEqualKPrefixSumMap {
 
       private static void testTwo() {
             int[] elements = {4, 1,-5, 8, -14, 2, 4, 3};
-            int k = -5;
-            int[] expectedResult = {-5, 8, -14, 2, 4};
+            int k = 6;
+            int[] expectedResult = {2,4};
 
             System.out.println(Arrays.toString(getSubArr(elements, k)));
       }
