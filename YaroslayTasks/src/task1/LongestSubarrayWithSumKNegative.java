@@ -22,7 +22,7 @@ public class LongestSubarrayWithSumKNegative {
        */
       public static void main(String[] args) {
 
-            //testOne();
+            testOne();
             //testTwo();
       }
       /*    i:    *

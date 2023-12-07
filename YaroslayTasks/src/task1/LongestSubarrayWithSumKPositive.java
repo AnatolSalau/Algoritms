@@ -1,6 +1,7 @@
 package task1;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class LongestSubarrayWithSumKPositive {
       /**
@@ -12,8 +13,9 @@ public class LongestSubarrayWithSumKPositive {
 
       public static void main(String[] args) {
 
-            //testOne();
-            testTwo();
+            testOne();
+            //testTwo();
+            //testTree();
       }
       /*
             1, 2, 1, 0, 1
@@ -49,6 +51,13 @@ public class LongestSubarrayWithSumKPositive {
             int expectedLength = 2;
             LinkedList<Integer> longestSubArr = getLongestSubArr(nums, target);
             System.out.println(longestSubArr);
+      }
+
+      static void testTree() {
+            int[] nums = {4, 1,-5, 8, -14, 2, 4, 3};
+            int k = -5;
+            List<Integer> result = getLongestSubArr(nums, k);
+            System.out.println(result);
       }
       /*
             two pointer realization
