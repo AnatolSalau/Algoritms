@@ -30,7 +30,7 @@ public class MoveZerosToEnd {
             curr = 8-> arr[1] = arr[2] -> 1, 8, 8, 9, count ++
 
           i:0  1  2  3
-            1, 0, 8, 9        count = 2
+            1, 8, 8, 9        count = 2
                      i
             curr = 9-> arr[2] = arr[3] -> 1, 8, 9, 9, count ++
 
@@ -48,45 +48,49 @@ public class MoveZerosToEnd {
             System.out.println();
       }
       /*
+      f - pointer from
+      t - pointer to
       for
         i:0  1  2  3  4  5  6
           0, 1, 0, 0, 8, 0, 9
-          i
+         tf
           count = 0, curr = 0,
 
         i:0  1  2  3  4  5  6
           0, 1, 0, 0, 8, 0, 9
-             i
+          t  f
           count = 0, curr = 1, -> 1 1 0 0 8 0 9, count ++
 
         i:0  1  2  3  4  5  6
           1, 1, 0, 0, 8, 0, 9
-                i
+             t  f
           count = 1, curr = 0
 
         i:0  1  2  3  4  5  6
           1, 1, 0, 0, 8, 0, 9
-                   i
+             t     f
           count = 1, curr = 0
 
         i:0  1  2  3  4  5  6
           1, 1, 0, 0, 8, 0, 9
-                      i
+             t        f
           count = 1, curr = 8, -> 1 8 0 0 8 0 9, count ++
 
         i:0  1  2  3  4  5  6
           1, 8, 0, 0, 8, 0, 9
-                         i
-          count = 2, curr = 8
+                t        f
+          count = 2, curr = 0
 
         i:0  1  2  3  4  5  6
           1, 8, 0, 0, 8, 0, 9
-                            i
+                t           f
           count = 2, curr = 9 -> 1 8 9 0 8 0 9, count ++
 
-          while
+          1 8 9 0 8 0 9
+          for
           count = 3
           putt all 0 from i = 3 to end
+          1 8 9 0 8 0 9 -> 1 8 9 0 0 0 0
        */
       public static void testTwo() {
             int[] nums = {0,1,0,0,8,0,9};
@@ -98,21 +102,24 @@ public class MoveZerosToEnd {
             System.out.println();
       }
 
-      static void pushZerosToEnd(int arr[])
-      {
-            int count = 0;
+      static void pushZerosToEnd(int arr[]) {
+            int l = 0;
+            int countNotZero = 0;
 
-            for (int i = 0; i < arr.length; i++) {
-                  int curr = arr[i];
-                  if (curr != 0) {
-                        arr[count] = arr[i];
-                        count++;
+            for (int r = 0; r < arr.length; r++) {
+                  int right = arr[r]; // right element
+
+                  arr[l] = arr[r]; // load from right to left
+
+                  if (right != 0) { // if right el is not zero
+                        l++ ; //move left pointer forward
+                        countNotZero++; // increase counter of non-zero elements
                   }
             }
 
-            while (count < arr.length) {
-                  arr[count] = 0;
-                  count ++;
+            //fill the end with arr by zero values
+            for (int i = countNotZero; i < arr.length; i++) {
+                  arr[i] = 0;
             }
       }
 }
