@@ -36,5 +36,57 @@ package eternal_contest.task1;
       100 - так как Костя укладывается  в размер трафика
  */
 public class Task1 {
+      public static void main(String[] args) {
+            testOne();
+            testTwo();
+      }
 
+      private static void testOne() {
+            int ratePrice = 100;
+            int rateSize = 10;
+            int oneExtraMbPrice = 12;
+            int featureRateSize = 15;
+            Task1 task1 = new Task1();
+
+            System.out.println("Rate price " + ratePrice);
+            System.out.println("Rate size " + rateSize);
+            System.out.println("One extra Mb price " + oneExtraMbPrice);
+            System.out.println("Feature rate size " + featureRateSize);
+            System.out.println("Result (feature price) : " + task1
+                  .getFeatureCost(ratePrice,rateSize,oneExtraMbPrice,featureRateSize)
+            );
+            System.out.println();
+      }
+
+      private static void testTwo() {
+            int ratePrice = 100;
+            int rateSize = 10;
+            int oneExtraMbPrice = 12;
+            int featureRateSize = 1;
+            Task1 task1 = new Task1();
+
+            System.out.println("Rate price " + ratePrice);
+            System.out.println("Rate size " + rateSize);
+            System.out.println("One extra Mb price " + oneExtraMbPrice);
+            System.out.println("Feature rate size " + featureRateSize);
+            System.out.println("Result (feature price) : " + task1
+                  .getFeatureCost(ratePrice,rateSize,oneExtraMbPrice,featureRateSize)
+            );
+            System.out.println();
+      }
+
+      private int getFeatureCost(int ratePrize, int rateSize, int oneExtraMbPrice, int featureRateSize ) {
+            //return ratePrize if we have enough MB size
+            if (featureRateSize <= rateSize) {
+                  return ratePrize;
+            }
+
+            int extraMBSize = featureRateSize - rateSize;
+
+            int extraPrice = extraMBSize * oneExtraMbPrice;
+
+            int featurePrize = extraPrice + ratePrize;
+
+            return featurePrize;
+      }
 }
