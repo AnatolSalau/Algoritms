@@ -23,7 +23,12 @@ public class TopKFrequentWords {
        */
       public static void main(String[] args) {
             testOne();
+            testTwo();
       }
+
+      /**
+       * O( n^2 log(n)^2 + k )
+       */
       List<String> getMostFrequentStrings(int k, String... strArr) {
 
             HashMap<String, Integer> freqMap = new HashMap<>();
@@ -38,28 +43,24 @@ public class TopKFrequentWords {
                   }
             }
 
-            TreeMap<Integer, List<String>> maxFreqMap = new TreeMap<>();
+            List<Map.Entry<String, Integer>> sortedList = new LinkedList<>(freqMap.entrySet());
+            sortedList.sort((entry1, entry2) -> {
+                  return entry2.getValue().compareTo(entry1.getValue());
+            });
 
-            Set<Map.Entry<String, Integer>> entries = freqMap.entrySet();
+            List<String> result = new LinkedList<>();
 
-            for (Map.Entry<String, Integer> entry : entries) {
-                  String string = entry.getKey();
-                  Integer count = entry.getValue();
-                  if (maxFreqMap.containsKey(count)) {
-                        List<String> strings = maxFreqMap.get(count);
-                        strings.add(string);
-                        maxFreqMap.put(count, strings);
-                  } else {
-                        List<String> strings = new ArrayList<>();
-                        strings.add(string);
-                        maxFreqMap.put(count, strings);
-                  }
+            for (Map.Entry<String, Integer> entry : sortedList) {
+                  result.add(entry.getKey());
+
+                  if (result.size() >= k) break;
             }
 
-            List<String> strings = maxFreqMap.get(k);
+            result.sort((e1, e2) -> {
+                  return e1.compareToIgnoreCase(e2);
+            });
 
-
-            return strings;
+            return result;
       }
       static void testOne() {
             String[] str = {"i","love","leetcode","i","love","coding"};
@@ -67,5 +68,15 @@ public class TopKFrequentWords {
             TopKFrequentWords topKFrequentWords = new TopKFrequentWords();
             List<String> mostFrequentStrings = topKFrequentWords.getMostFrequentStrings(k, str);
             System.out.println(mostFrequentStrings);
+            System.out.println();
+      }
+
+      static void testTwo() {
+            String[] str = {"the","day","is","sunny","the","the","the","sunny","is","is"};
+            int k = 4;
+            TopKFrequentWords topKFrequentWords = new TopKFrequentWords();
+            List<String> mostFrequentStrings = topKFrequentWords.getMostFrequentStrings(k, str);
+            System.out.println(mostFrequentStrings);
+            System.out.println();
       }
 }

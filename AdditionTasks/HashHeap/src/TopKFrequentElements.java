@@ -17,12 +17,14 @@ public class TopKFrequentElements {
        */
       public static void main(String[] args) {
             test1();
+            test2();
+            test3();
       }
-
+      /**
+            O( (n^2 + k) log(n)  )
+       */
       static List<Integer> getMostFrequentElements(int[] nums, int k) {
-            List<Integer> result = new LinkedList<>();
-            Map<Integer,Integer> freqMap = new HashMap();
-            TreeMap<Integer,Integer> qtyMap = new TreeMap<>();
+            TreeMap<Integer,Integer> freqMap = new TreeMap<>();
             //fill freqMap
             for (int i = 0; i < nums.length; i++) {
                   int current = nums[i];
@@ -30,25 +32,21 @@ public class TopKFrequentElements {
                   if (freqMap.containsKey(current)) {
                         int val = freqMap.get(current);
                         int newVal = val + 1;
-                        //add to qtyMap
-                        if (qtyMap.containsKey(val)) {
-                              Integer num = qtyMap.get(val);
-                              qtyMap.remove(val);
-                              qtyMap.put(newVal,current);
-                        }
-
                         //add to freqMap
                         freqMap.put(current,newVal);
 
                   } else {
                         freqMap.put(current,1);
-                        qtyMap.put(1,current);
                   }
             }
+            PriorityQueue<Integer> heap = new PriorityQueue<>((a, b) -> freqMap.get(b) - freqMap.get(a));
 
-            for (int i = 0; i < k; i++) {
-                  Map.Entry<Integer, Integer> currMin = qtyMap.pollLastEntry();
-                  result.add(currMin.getValue());
+            heap.addAll(freqMap.keySet());
+
+            List<Integer> result = new LinkedList<>();
+            while (!heap.isEmpty()) {
+                  result.add(heap.poll());
+                  if (result.size() >= k) return result;
             }
             return result;
 
@@ -62,11 +60,31 @@ public class TopKFrequentElements {
             System.out.println("Expected : " + Arrays.toString(expected));
             List<Integer> mostFrequentElements = getMostFrequentElements(nums, k);
             System.out.println(mostFrequentElements);
+            System.out.println();
       }
 
       static void test2() {
             int[] nums = {1};
             int k = 1;
             int[] expected = {1};
+            System.out.println(Arrays.toString(nums));
+            System.out.println("Expected : " + Arrays.toString(expected));
+            List<Integer> mostFrequentElements = getMostFrequentElements(nums, k);
+            System.out.println(mostFrequentElements);
+            System.out.println();
+      }
+
+      /*
+            1 1 1 2 2 2 3 3
+       */
+      static void test3() {
+            int[] nums = {1,1,1,2,2,2,3,3};
+            int k = 2;
+            int[] expected = {1,2};
+            System.out.println(Arrays.toString(nums));
+            System.out.println("Expected : " + Arrays.toString(expected));
+            List<Integer> mostFrequentElements = getMostFrequentElements(nums, k);
+            System.out.println(mostFrequentElements);
+            System.out.println();
       }
 }
