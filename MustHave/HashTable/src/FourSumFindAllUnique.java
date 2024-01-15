@@ -11,9 +11,9 @@ public class FourSumFindAllUnique {
              Explanation: Sum of output is equal to 16, i.e. 1 + 3 + 5 + 7 = 16.
        */
       public static void main(String[] args) {
-            //test1();
+            test1();
             //test2();
-            test3();
+            //test3();
       }
 
       /**

@@ -68,6 +68,7 @@ public class GraphDeepSearchWidth {
             g.addEdge(0,3);
 
             g.addEdge(1,0);
+
             g.addEdge(1,2);
             g.addEdge(1,4);
 
@@ -93,7 +94,7 @@ public class GraphDeepSearchWidth {
             g.addEdge(8,5);
             g.addEdge(8,7);
 
-            //System.out.println(g.toString());
+            System.out.println(g.toString());
             g.searchInWidth(1,8);
       }
 }

@@ -22,8 +22,8 @@ public class BestTimeBuySellMedium {
              Output: 4
              Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit = 5-1 = 4.
              Total profit is 4.
-             Example 3:
 
+             Example 3:
              Input: prices = [7,6,4,3,1]
              Output: 0
              Explanation: There is no way to make a positive profit, so we never buy the stock to achieve the maximum profit of 0.
@@ -32,6 +32,7 @@ public class BestTimeBuySellMedium {
       public static void main(String[] args) {
             testOne();
             testTwo();
+            testThree();
       }
 
       static void testOne() {
@@ -40,6 +41,8 @@ public class BestTimeBuySellMedium {
             BestTimeBuySellMedium sellMedium = new BestTimeBuySellMedium();
             int maxProfit = sellMedium.getMaxProfit(prices);
             System.out.println(maxProfit);
+            System.out.println("Expected : " + expected);
+            System.out.println();
       }
 
       static public void testTwo() {
@@ -48,11 +51,18 @@ public class BestTimeBuySellMedium {
             BestTimeBuySellMedium sellMedium = new BestTimeBuySellMedium();
             int maxProfit = sellMedium.getMaxProfit(prices);
             System.out.println(maxProfit);
+            System.out.println("Expected : " + expected);
+            System.out.println();
       }
 
-      public void testThree() {
+      static public void testThree() {
             int[] prices = {7,6,4,3,1};
             int expected = 0;
+            BestTimeBuySellMedium sellMedium = new BestTimeBuySellMedium();
+            int maxProfit = sellMedium.getMaxProfit(prices);
+            System.out.println(maxProfit);
+            System.out.println("Expected : " + expected);
+            System.out.println();
       }
 
       int getMaxProfit(int[] prices) {

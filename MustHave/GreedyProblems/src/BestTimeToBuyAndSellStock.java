@@ -32,7 +32,7 @@ public class BestTimeToBuyAndSellStock {
              Output: 6
        */
       public static void main(String[] args) {
-            testOne();
+            //testOne();
             testTwo();
       }
 
