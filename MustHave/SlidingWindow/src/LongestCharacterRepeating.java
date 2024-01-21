@@ -27,8 +27,8 @@ public class LongestCharacterRepeating {
        There may exists other ways to achieve this answer too.
        */
       public static void main(String[] args) {
-/*            test1();
-            test2();*/
+            test1();
+            test2();
             test3();
       }
       /*
