@@ -9,10 +9,10 @@ public class SubarraySumEqualKPrefixSumMap {
        Дан список интов и число-цель. Нужно найти такой range, чтобы сумма его элементов давала число-цель.
        elements = [1, -3, 4, 5]
        target = 9
-       result = range(2, 4) # because elements[2] + elements[4] == target
+       result = range(4, 5) # because elements[3] + elements[4] == target
        */
       public static void main(String[] args) {
-            //testOne();
+            testOne();
             testTwo();
       }
 
@@ -45,15 +45,22 @@ public class SubarraySumEqualKPrefixSumMap {
             int k = 9;
             int[] expectedResult = {4,5};
 
+            System.out.println("Test 1");
+            System.out.println(Arrays.toString(elements));
+            System.out.println("k = " + k);
             System.out.println(Arrays.toString(getSubArr(elements, k)));
+            System.out.println();
       }
 
       private static void testTwo() {
             int[] elements = {4, 1,-5, 8, -14, 2, 4, 3};
             int k = 6;
             int[] expectedResult = {2,4};
-
+            System.out.println("Test 2");
+            System.out.println(Arrays.toString(elements));
+            System.out.println("k = " + k);
             System.out.println(Arrays.toString(getSubArr(elements, k)));
+            System.out.println();
       }
 
 
