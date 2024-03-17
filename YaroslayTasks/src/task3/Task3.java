@@ -46,7 +46,8 @@ public class Task3 {
 
             TreeNode root = new TreeNode("A",left, right);
 
-            getTwoEquivalentSubTree(root);
+            TreeNode[] twoEquivalentSubTree = getTwoEquivalentSubTree(root);
+
       }
 
       /*
