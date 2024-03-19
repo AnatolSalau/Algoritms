@@ -103,6 +103,11 @@ public class SameStringAfterDeleting {
             j
             avcd -> count = 0 i++ j++
 
+             i
+            abcd
+             j
+            avcd -> b != v count = 1 i++ j++
+
               i
             abcd
               j
@@ -131,11 +136,6 @@ public class SameStringAfterDeleting {
             aabcv
              j
             abcv -> count = 1, length1 > length2 -> i++
-
-              i
-            aabcv
-             j
-            abcv -> count = 1
 
               i
             aabcv

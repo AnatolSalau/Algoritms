@@ -31,7 +31,7 @@ class Main
 		System.out.print(msg);
 		while (head != null)
 		{
-			System.out.print(head.data + " —> ");
+			System.out.print(head.data + " -> ");
 			head = head.next;
 		}
 

@@ -35,6 +35,8 @@ public class MergeIntervals {
             System.out.println("Interfals after sort : " + Arrays.deepToString(arrays));
             List<List<Integer>> nonOverlappingIntervals = mergeIntervals.getNonOverlappingIntervals(arrays);
             System.out.println("Non overlapping arrays : " + nonOverlappingIntervals);
+            System.out.println("Expected : " + Arrays.deepToString(expectedResult));
+            System.out.println();
       }
 
       static void test2() {
@@ -46,6 +48,8 @@ public class MergeIntervals {
             System.out.println("Interfals after sort : " + Arrays.deepToString(arrays));
             List<List<Integer>> nonOverlappingIntervals = mergeIntervals.getNonOverlappingIntervals(arrays);
             System.out.println("Non overlapping arrays : " + nonOverlappingIntervals);
+            System.out.println("Expected : " + Arrays.deepToString(expectedResult));
+            System.out.println();
       }
 
       static void test3() {
@@ -57,7 +61,8 @@ public class MergeIntervals {
             System.out.println("Interfals after sort : " + Arrays.deepToString(arrays));
             List<List<Integer>> nonOverlappingIntervals = mergeIntervals.getNonOverlappingIntervals(arrays);
             System.out.println("Non overlapping arrays : " + nonOverlappingIntervals);
-
+            System.out.println("Expected : " + Arrays.deepToString(expectedResult));
+            System.out.println();
       }
       /*    i=1                                                                           j=0
             [[1, 3], [2, 6], [2, 4], [8, 10], [8, 9], [9, 11], [15, 18], [16, 17]]      [[1, 3]]

@@ -7,12 +7,6 @@ import java.util.List;
 
 public class LongestSubarrayWithSumKNegative {
       /**
-       Given an array of integers nums and an integer k,
-       return longest subarray whose sum equals to k.
-
-       A subarray is a contiguous non-empty sequence of elements within an array.
-       */
-      /**
        Дан массив целых чисел и число target.
        Нужно найти непустой подотрезок (непрерывную подпоследовательность) с
        заданной суммой target, либо сказать, что это невозможно.
@@ -23,24 +17,28 @@ public class LongestSubarrayWithSumKNegative {
       public static void main(String[] args) {
 
             testOne();
-            //testTwo();
+            testTwo();
       }
       /*    i:    *
                   0  1  2  3    4  5  6  7
-                  4, 1,-5, 8, -14, 2, 4, 3    k = -5, expected result = -5, 8, -14, 2, 4
+                  4, 1,-5, 8, -14, 2, 4, 3    k = -5, expected result = -5, 8, -14, 2, 4 or -14, 2, 4, 3
             sum:  4
+
             i:    *
                   0  1  2  3    4  5  6  7                                          4 -> 0
                   4, 1,-5, 8, -14, 2, 4, 3      4 -(- 5) = 9
             sum:  4
+
             i:       *
                   0  1  2  3    4  5  6  7                                          4 -> 0
                   4, 1,-5, 8, -14, 2, 4, 3      5 -(- 5) = 10                       5 -> 1
             sum:     5
+
             i:          *
                   0  1  2  3    4  5  6  7                                          4 -> 0
                   4, 1,-5, 8, -14, 2, 4, 3      0 -(- 5) = 5                        5 -> 1      5 is exist. so 2 - 1 = 1 [2,2]
-            sum:        0                                                           0 -> 2
+            sum:        0
+                                                                     0 -> 2
             i:             *
                   0  1  2  3    4  5  6  7                                          4 -> 0
                   4, 1,-5, 8, -14, 2, 4, 3      8 -(- 5) = 13                       5 -> 1
@@ -76,52 +74,7 @@ public class LongestSubarrayWithSumKNegative {
                                                                                     3 -> 7
        */
       static List<Integer> getLongestSubArray(int[] array, int k) {
-            List<Integer> result = new LinkedList<>();
-
-            HashMap<Integer, Integer> prefixMap = new HashMap<>();
-
-            int startInd = -1;
-            int endInd = -1;
-
-            int maxLen = 0;
-            int sum = 0;
-
-            for (int i = 0; i < array.length; i++) {
-                  int currLength = i + 1;
-                  int currElem = array[i];
-                  sum = sum + currElem;
-                  int remainder = sum - k;
-
-                  if (sum == k) {   //if this sum equal k -> save answer
-                        if (currLength > maxLen) {
-                              maxLen = currLength;
-                              startInd = 0;
-                              endInd = i;
-                        }
-                        continue;
-                  }
-
-                  if (!prefixMap.containsKey(remainder)) {
-                        prefixMap.put(sum,i);
-                  }
-
-                  if (prefixMap.containsKey(remainder)) {
-                        int prefixLastIndex = prefixMap.get(remainder);
-                        int prefixlength = prefixLastIndex +1;
-                        int nextPartLength = i - prefixlength + 1;
-
-                        if (nextPartLength > maxLen) {
-                              maxLen = nextPartLength;
-                              startInd = prefixLastIndex + 1;
-                              endInd = i;
-                        }
-                        prefixMap.put(sum,i);
-                  }
-            }
-            for (int i = startInd; i <= endInd ; i++) {
-                  result.add(array[i]);
-            }
-            return result;
+          return null;
       }
       static void testOne() {
            int[] nums = {4, 1,-5, 8, -14, 2, 4, 3};

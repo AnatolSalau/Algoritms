@@ -13,7 +13,7 @@ public class TaskD {
       public static void main(String[] args)
       {
             // This is a size of balanced parentheses
-            int size = 4;
+            int size = 3;
             int open = 0;
             int close = 0;
 
